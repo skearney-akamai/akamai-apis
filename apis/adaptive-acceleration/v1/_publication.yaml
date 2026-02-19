@@ -1,0 +1,15 @@
+# Identifies the ReadMe project to publish in, corresponding to:
+# https://techdocs.akamai.com/{id}/reference
+id: adaptive-acceleration
+# Official marketing title of the API, matching the page above
+title: Adaptive Acceleration API
+# Major API version, which typically appears in the API's URLs
+version: v1
+service-summary: |
+  View which rules Adaptive Acceleration applies to a property, and
+  generate new rules.
+service-type: DELIVERY
+# Whether these files distribute to public Github:
+# https://techdocs.akamai.com/internal-ux-writing/docs/swag-tool-extensions#exclude-the-entire-openapi-bundle
+exclude:
+  exclude-from-github: false
