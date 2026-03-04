@@ -1,0 +1,8 @@
+name: version
+in: path
+description: |
+  The version of proposed CIDR blocks that you're acknowledging.
+required: true
+schema:
+  type: integer
+  example: 1

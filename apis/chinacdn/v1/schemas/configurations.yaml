@@ -1,0 +1,6 @@
+type: array
+description: |
+  The Client Access Control (CAC) configuration collection.
+minItems: 0
+items:
+  $ref: configuration.yaml
