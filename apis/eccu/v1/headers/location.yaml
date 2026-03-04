@@ -1,0 +1,4 @@
+description: |
+  The path to the newly created ECCU request.
+schema:
+  type: string

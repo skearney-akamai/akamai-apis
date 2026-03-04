@@ -1,0 +1,8 @@
+name: requestId
+in: path
+description: |
+  Unique identifier for an ECCU request.
+required: true
+schema:
+  type: integer
+  example: 263529539
