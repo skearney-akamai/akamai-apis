@@ -1,0 +1,19 @@
+x-akamai:
+  path-info: /property-hostnames
+get:
+  operationId: get-property-hostnames
+  summary: List property hostnames
+  tags:
+  - Property hostnames
+  description: |
+    Returns a list of the property hostnames under your account that are available for deployment on China CDN.
+  responses:
+    200:
+      description: |
+        Provides information about the property hostnames under your account.
+      content:
+        application/vnd.akamai.chinacdn.property-hostnames.v1+json:
+          example:
+            $ref: ../examples/property-hostnames-get-200.json
+          schema:
+            $ref: ../schemas/hostnames-get-response.yaml

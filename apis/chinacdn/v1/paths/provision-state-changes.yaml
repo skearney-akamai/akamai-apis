@@ -1,0 +1,31 @@
+x-akamai:
+  path-info: /property-hostnames/{hostname}/provision-state-changes
+parameters:
+- $ref: ../parameters/hostname-path.yaml
+post:
+  operationId: post-property-hostname-provision-state-change
+  summary: Create a new provision state change
+  tags:
+  - Provision state changes
+  description: |
+    Run this operation to change your property hostname's current deployment state. For more information, see the [Provision state change workflow](ref:provision-state-change-workflow), [Deployment states](ref:deployment-states), and [Manage property hostnames](ref:manage-property-hostnames) sections. For delivery in China, Akamai recommends you map the CNAME of your property hostname to the new `*88.net` Chinese operational domain that corresponds to your original edge hostname selection. For example, with an `example.com.edgesuite.net` edge hostname, change the CNAME to `example.com.edgesuite88.net`. For more information, see: [New Chinese operational domains](doc:add-edit-prop-hn#new-chinese-operational-domains).
+  parameters:
+  - $ref: ../parameters/force-deprovision-query.yaml
+  requestBody:
+    required: true
+    content:
+      application/vnd.akamai.chinacdn.provision-state-change.v1+json:
+        example:
+          $ref: ../examples/provision-state-change-input.json
+        schema:
+          $ref: ../schemas/property-hostname-provision-state-changes-post-request.yaml
+  responses:
+    202:
+      description: |
+        Provides information about the change made to the property hostname's deployment in China.
+      content:
+        application/vnd.akamai.chinacdn.provision-state-change.v1+json:
+          example:
+            $ref: ../examples/provision-state-change-response.json
+          schema:
+            $ref: ../schemas/property-hostname-provision-state-changes-post-response.yaml

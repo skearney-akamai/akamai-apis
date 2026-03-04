@@ -1,0 +1,8 @@
+name: changeId
+in: path
+description: |
+  A unique identifier for the property hostname's current provision state change.
+required: true
+schema:
+  type: integer
+  example: 64

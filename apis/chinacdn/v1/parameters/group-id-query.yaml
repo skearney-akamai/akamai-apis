@@ -1,0 +1,8 @@
+name: groupId
+in: query
+description: |
+  A unique identifier for a group. A unique identifier for a group. This parameter is only needed when creating a property `hostname`.
+required: true
+schema:
+  type: integer
+  example: 54321

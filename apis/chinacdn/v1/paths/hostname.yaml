@@ -1,0 +1,57 @@
+x-akamai:
+  path-info: /property-hostnames/{hostname}
+parameters:
+- $ref: ../parameters/hostname-path.yaml
+get:
+  operationId: get-property-hostname
+  summary: Get a property hostname
+  tags:
+  - Property hostnames
+  description: |
+    Returns a specific property hostname under your account.
+  responses:
+    200:
+      description: |
+        Provides information about the property hostname under your account.
+      content:
+        application/vnd.akamai.chinacdn.property-hostname.v1+json:
+          example:
+            $ref: ../examples/property-hostname-get-put-response.json
+          schema:
+            $ref: ../schemas/hostname-get-response.yaml
+put:
+  operationId: put-property-hostname
+  summary: Create or update a property hostname
+  tags:
+  - Property hostnames
+  description: |
+    This operation lets you create or update a property `hostname` based on the group for your current account and contract type. The API responds with a 201 code when you create a new property hostname, and a 200 code thereafter when updating it. If the property `hostname` has a provision status of `WHITELISTED` or `PROVISIONED` and you change the `icpNumberId`, the API creates a China partner re-approval request. If the partner denies the request for any reason, the property hostname's `provisionState` changes to `DEPROVISIONED`.
+  parameters:
+  - $ref: ../parameters/group-id-query.yaml
+  requestBody:
+    required: true
+    content:
+      application/vnd.akamai.chinacdn.property-hostname.v1+json:
+        example:
+          $ref: ../examples/property-hostname-put.json
+        schema:
+          $ref: ../schemas/property-hostname-put-request.yaml
+  responses:
+    200:
+      description: |
+        Provides information about the property hostname under your account.
+      content:
+        application/vnd.akamai.chinacdn.property-hostname.v1+json:
+          example:
+            $ref: ../examples/property-hostname-get-put-response.json
+          schema:
+            $ref: ../schemas/property-hostname-put-response.yaml
+    201:
+      description: |
+        Provides information about the property hostname under your account.
+      content:
+        application/vnd.akamai.chinacdn.property-hostname.v1+json:
+          example:
+            $ref: ../examples/property-hostname-get-put-response.json
+          schema:
+            $ref: ../schemas/property-hostname-put-response.yaml

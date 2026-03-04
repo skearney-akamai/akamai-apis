@@ -1,0 +1,13 @@
+openapi: 3.0.0
+info:
+  title: Edge hostnames
+  version: v1
+servers:
+- url: https://{hostname}/chinacdn/v1
+x-akamai:
+  auth-type: EDGE_GRID
+paths:
+  /edge-hostnames:
+    $ref: paths/edge-hostnames.yaml
+  /edge-hostnames/{edgehostname}/deprovision-policy:
+    $ref: paths/deprovision-policy.yaml

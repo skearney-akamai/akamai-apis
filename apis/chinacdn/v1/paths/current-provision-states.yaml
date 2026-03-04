@@ -1,0 +1,21 @@
+x-akamai:
+  path-info: /current-provision-states
+get:
+  operationId: get-current-provision-states
+  summary: List current provision states
+  tags:
+  - Provision states
+  description: |
+    Returns a list of current provision states for all property hostnames under your account.
+  parameters:
+  - $ref: ../parameters/provision-state-query.yaml
+  responses:
+    200:
+      description: |
+        Provides information for the current provision states of all property hostnames under your account.
+      content:
+        application/vnd.akamai.chinacdn.provision-states.v1+json:
+          example:
+            $ref: ../examples/provision-states.json
+          schema:
+            $ref: ../schemas/provision-states-current-get-response.yaml

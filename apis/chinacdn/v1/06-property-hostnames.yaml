@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Property hostnames
+  version: v1
+servers:
+- url: https://{hostname}/chinacdn/v1
+x-akamai:
+  auth-type: EDGE_GRID
+paths:
+  /property-hostnames:
+    $ref: paths/property-hostnames.yaml
+  /property-hostnames/{hostname}:
+    $ref: paths/hostname.yaml
+  /property-hostnames/{hostname}/provision-state-changes:
+    $ref: paths/provision-state-changes.yaml
+  /property-hostnames/{hostname}/provision-state-changes/current:
+    $ref: paths/current.yaml
+  /property-hostnames/{hostname}/provision-state-changes/{changeId}:
+    $ref: paths/change.yaml

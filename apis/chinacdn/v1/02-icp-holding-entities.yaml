@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: ICP holding entities
+  version: v1
+servers:
+- url: https://{hostname}/chinacdn/v1
+x-akamai:
+  auth-type: EDGE_GRID
+paths:
+  /icp-holding-entities:
+    $ref: paths/icp-holding-entities.yaml

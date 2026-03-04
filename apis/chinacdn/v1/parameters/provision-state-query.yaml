@@ -1,0 +1,7 @@
+name: provisionState
+in: query
+description: |
+  Filter results by the given provision state.
+schema:
+  type: string
+  example: WHITELISTED

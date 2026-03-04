@@ -1,0 +1,21 @@
+x-akamai:
+  path-info: /property-hostnames/{hostname}/provision-state-changes/current
+parameters:
+- $ref: ../parameters/hostname-path.yaml
+get:
+  operationId: get-property-hostname-provision-state-changes-current
+  summary: Get the current provision state changes
+  tags:
+  - Provision state changes
+  description: |
+    Returns details about current deployment changes for the specified property `hostname` under your account.
+  responses:
+    200:
+      description: |
+        Contains a list of provisions state changes.
+      content:
+        application/vnd.akamai.chinacdn.provision-state-changes.v1+json:
+          example:
+            $ref: ../examples/provision-state-changes.json
+          schema:
+            $ref: ../schemas/hostname-provision-state-changes-current-get-response.yaml

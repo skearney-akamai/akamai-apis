@@ -1,0 +1,46 @@
+x-akamai:
+  path-info: /edge-hostnames/{edgehostname}/deprovision-policy
+parameters:
+- $ref: ../parameters/edgehostname-path.yaml
+get:
+  operationId: get-edge-hostname-deprovision-policy
+  summary: Get deprovision policy
+  tags:
+  - Edge hostnames
+  description: |
+    Returns the deprovision policy for the provided edge hostname.
+  responses:
+    200:
+      description: |
+        Contains information about the deprovision policy assigned to the edge hostname.
+      content:
+        application/vnd.akamai.chinacdn.deprovision-policy.v1+json:
+          example:
+            $ref: ../examples/deprovision-policy-200.json
+          schema:
+            $ref: ../schemas/edge-hostname-deprovision-policy-get-response.yaml
+put:
+  operationId: put-edge-hostname-deprovision-policy
+  summary: Specify a deprovision policy
+  tags:
+  - Edge hostnames
+  description: |
+    Specify a deprovision policy for the provided edge hostname.
+  requestBody:
+    required: true
+    content:
+      application/vnd.akamai.chinacdn.deprovision-policy.v1+json:
+        example:
+          $ref: ../examples/deprovision-policy-put.json
+        schema:
+          $ref: ../schemas/edge-hostname-deprovision-policy-put-request.yaml
+  responses:
+    200:
+      description: |
+        Contains information about the deprovision policy assigned to the edge hostname.
+      content:
+        application/vnd.akamai.chinacdn.deprovision-policy.v1+json:
+          example:
+            $ref: ../examples/deprovision-policy-200.json
+          schema:
+            $ref: ../schemas/edge-hostname-deprovision-policy-put-response.yaml
