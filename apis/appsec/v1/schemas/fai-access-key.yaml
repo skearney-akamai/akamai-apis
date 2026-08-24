@@ -1,0 +1,45 @@
+type: object
+description: |
+  Represents an access key for an API configuration, used to call the FAI Detection API.
+additionalProperties: false
+properties:
+  keyId:
+    type: string
+    description: |
+      Unique identifier for the access key.
+    readOnly: true
+  key:
+    type: string
+    description: |
+      The access key value. Only returned in full on creation. Subsequent GET responses will not show the value.
+    readOnly: true
+  status:
+    type: string
+    description: |
+      Current status of the key. One of `ACTIVE`, `EXPIRED`, or `REVOKED`.
+    enum:
+    - ACTIVE
+    - EXPIRED
+    - REVOKED
+    x-enum-descriptions:
+      ACTIVE: Key is active and can be used for API calls.
+      EXPIRED: Key has passed its expiration date and cannot be used.
+      REVOKED: Key has been manually revoked and cannot be used.
+    readOnly: true
+  expirationTime:
+    type: string
+    format: date-time
+    description: |
+      The time when the key expires.
+    readOnly: true
+  createdBy:
+    type: string
+    description: |
+      User who created the key.
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+    description: |
+      The time when the key was created.
+    readOnly: true

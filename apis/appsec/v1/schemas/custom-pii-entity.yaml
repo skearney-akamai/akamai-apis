@@ -1,0 +1,34 @@
+type: object
+description: |
+  Represents a custom PII entity, based on regular expression patterns, configured within a PII detection rule. The referenced custom PII type must already exist in the configuration version.
+additionalProperties: false
+required:
+- customPiiId
+- action
+properties:
+  customPiiId:
+    type: string
+    description: |
+      Unique identifier for the custom PII type. This type must be previously created for the configuration version.
+  customPiiName:
+    type: string
+    description: |
+      Display name of the custom entity.
+    readOnly: true
+  action:
+    type: string
+    description: |
+      Action for this entity. One of `ALERT`, `DENY`, or `MODIFY`.
+    enum:
+    - ALERT
+    - DENY
+    - MODIFY
+    x-enum-descriptions:
+      ALERT: Log the detection but allow the request.
+      DENY: Block the request and return an error.
+      MODIFY: Modify the request or response to remove the threat.
+  modifiedResponse:
+    description: |
+      Custom modified response for this entity when its action is MODIFY.
+    allOf:
+    - $ref: ./modify-action-response.yaml

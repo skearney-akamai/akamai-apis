@@ -1,0 +1,36 @@
+type: object
+description: |
+  Describes the fields of an AI rule.
+additionalProperties: false
+required:
+- ruleId
+- ruleVersion
+- title
+- riskScoreGroup
+- ruleDescription
+- action
+properties:
+  ruleId:
+    $ref: ai-rule-id.yaml
+  ruleVersion:
+    $ref: ai-rule-version.yaml
+  title:
+    type: string
+    description: |
+      The AI rule's title.
+  riskScoreGroup:
+    type: string
+    description: |
+      The AI rule's risk score group.
+  ruleDescription:
+    type: string
+    description: |
+      A description of the AI rule.
+  action:
+    $ref: ai-rule-action.yaml
+  conditionExceptions:
+    type: array
+    description: |
+      The condition exceptions applied to this AI rule.
+    items:
+      $ref: condition-exception-get-200.yaml

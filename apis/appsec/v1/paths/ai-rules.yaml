@@ -1,0 +1,33 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/security-policies/{policyId}/ai-rules
+parameters:
+  - $ref: ../parameters/config-id-path.yaml
+  - $ref: ../parameters/version-number-path.yaml
+  - $ref: ../parameters/policy-id-path.yaml
+get:
+  operationId: get-policy-ai-rules
+  summary: List AI rules
+  tags:
+  - "WAF rules: AI rules"
+  description: |
+    Returns all AI rules for the security policy. AI rules are WAF rules generated and refined using machine learning.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully retrieved AI rules.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/ai-rules-get-200.json
+          schema:
+            $ref: ../schemas/ai-rules-get-200.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

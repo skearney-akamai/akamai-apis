@@ -1,0 +1,41 @@
+type: object
+description: |
+  Collect data needed for condition matches on HTTP request methods.
+title: RequestMethodCondition
+additionalProperties: false
+required:
+- className
+- value
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `RequestMethodCondition`.
+    enum:
+    - RequestMethodCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify HTTP request methods to match against. Either `GET`, `POST`, `PUT`, `DELETE`, `HEAD`, `OPTIONS`, `PATCH`, `TRACE`, or `CONNECT`.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      enum:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - HEAD
+      - OPTIONS
+      - PATCH
+      - TRACE
+      - CONNECT

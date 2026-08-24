@@ -1,0 +1,7 @@
+name: version
+in: query
+required: false
+schema:
+  type: integer
+description: Filter results by configuration version number.
+example: 2

@@ -1,0 +1,21 @@
+type: object
+description: |
+  Represents a supported language you can use in application context configuration and language detection rules. Each language keys by its ISO 639-3 three-letter language code, and includes a human-readable name. Organizations can specify allowed languages in their application context to define the expected languages for legitimate user interactions, and reference these language codes in language detection rules to flag or block prompts in unexpected languages.
+additionalProperties: false
+required:
+- code
+- name
+properties:
+  code:
+    type: string
+    description: |
+      The ISO 639-3 three-letter language code that uniquely identifies this language. This standardized code is used when configuring allowed languages in the application context's languages array and when setting up language detection rules. The code consists of three lowercase letters conforming to the ISO 639-3 international standard for language identification.
+    pattern: "^[a-z]{3}$"
+    minLength: 3
+    maxLength: 3
+    readOnly: true
+  name:
+    type: string
+    description: |
+      The human-readable name of the language in English. This descriptive name helps administrators identify and select languages when configuring application context or language detection rules. It appears in configuration management interfaces and documentation for clarity.
+    readOnly: true

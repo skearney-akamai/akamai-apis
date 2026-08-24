@@ -1,0 +1,62 @@
+title: JWT
+type: object
+description: |
+  Identify a client by a JWT claim value.
+additionalProperties: false
+required:
+- identifier
+properties:
+  identifier:
+    type: string
+    description: |
+      The value for this client identifier type is `jwt`.
+  order:
+    type: integer
+    description: |
+      Specify the position of this identifier in the fallback chain. The system attempts lower values first.
+  location:
+    type: string
+    description: |
+      Specify the location within the request where the JWT is found.
+  name:
+    type: string
+    description: |
+      Specify the name of the JWT field or header containing the token.
+  keyFormat:
+    type: string
+    description: |
+      Specify the format of the JWT signing key.
+  primaryPublicKey:
+    type: string
+    description: |
+      Specify the PEM-encoded primary public key to use to verify the JWT signature.
+  primaryPublicKeyFileName:
+    type: string
+    description: |
+      Specify the filename of the primary public key.
+  backupPublicKey:
+    type: string
+    description: |
+      Specify the PEM-encoded backup public key to use when the primary key fails verification.
+  backupPublicKeyFileName:
+    type: string
+    description: |
+      Specify the filename of the backup public key.
+  jwkUrl:
+    type: string
+    description: |
+      Specify the URL of the JSON Web Key Set (JWKS) for dynamic key retrieval.
+  allowedJwkHosts:
+    type: array
+    description: |
+      Specify hostnames allowed when fetching JWK keys.
+    items:
+      type: string
+  clockSkewAmount:
+    type: integer
+    description: |
+      Specify the allowed time difference in seconds between the server and token issuer clocks to account for minor drift when validating JWT `exp` and `nbf` claims.
+  specificClaimAsIdentifier:
+    type: string
+    description: |
+      Specify the JWT claim to use as the client identifier value instead of the standard subject claim.

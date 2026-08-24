@@ -1,0 +1,41 @@
+type: object
+description: |
+  Collect data needed for condition matches on request paths.
+title: PathCondition
+additionalProperties: false
+required:
+- className
+- path
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `PathCondition`.
+    enum:
+    - PathCondition
+  positiveMatch:
+    type: boolean
+    default: true
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  path:
+    type: array
+    description: |
+      Specify request paths to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  pathPrepend:
+    type: string
+    description: |
+      Specify a string to prepend to each path before matching.
+  valueWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards.

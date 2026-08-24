@@ -1,0 +1,31 @@
+post:
+  operationId: post-fai-configuration-version-clone
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/clone
+  summary: Clone an FAI configuration version
+  tags:
+  - Configuration versions
+  description: |
+    Create a new configuration version based on an existing one. The new version copies all settings and rules from the source version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  responses:
+    201:
+      description: |
+        Configuration version cloned successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-fai-config.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-fai-configuration-version-clone-201.json
+          schema:
+            $ref: ../schemas/fai-configuration-version.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

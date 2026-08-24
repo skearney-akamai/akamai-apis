@@ -1,0 +1,36 @@
+allOf:
+- $ref: ./rule.yaml
+- type: object
+  description: |
+    Settings for an off-topic content detection and prevention rule. Use this rule to restrict LLM conversations to approved topics and prevent users from engaging in discussions outside the intended use case. It helps maintain focus on business-relevant interactions, reduce misuse, and keeps the AI assistant within its designated domain. You define allowed topics and configure sensitivity levels to control how strictly topic boundaries are enforced.
+  additionalProperties: false
+  required:
+  - sensitivity
+  - topics
+  properties:
+    sensitivity:
+      type: string
+      description: |
+        The sensitivity level for off-topic detection. `HIGH` provides the most aggressive detection with strict enforcement of topic boundaries, `MEDIUM` balances detection accuracy with flexibility for related discussions, and `LOW` focuses on clearly off-topic content only. Higher sensitivity levels may restrict more borderline conversations but provide stronger control over the LLM's scope.
+      enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+    topics:
+      type: array
+      description: |
+        List of allowed topic identifiers that define the scope of acceptable conversations. Topics can be predefined categories (such as, `HEALTHCARE`, `FINANCE`, `CUSTOMER_SUPPORT`) or custom topic definitions created for specific organizational use cases. Run the [List disallowed topics](ref:get-disallowed-topics) operation to retrieve the full list of available topics. When a user's prompt is detected as off-topic (not matching any of the specified allowed topics), the configured action is triggered.
+      items:
+        type: string
+        description: |
+          A topic identifier representing an allowed subject area for LLM interactions. Can be a predefined topic type from the platform or a custom topic identifier.
+      minItems: 1
+    overrideTopics:
+      type: array
+      description: |
+        Optional list of specific topics that should be explicitly blocked even if they might fall within the broader allowed topics. This provides granular control to exclude sensitive or inappropriate subtopics from otherwise permitted categories. For example, you might allow `HEALTHCARE` discussions but explicitly block `REPRODUCTIVE_HEALTH` or `MENTAL_HEALTH` subtopics. If not specified or empty, no additional topic restrictions beyond the standard off-topic detection are applied.
+      items:
+        type: string
+        description: |
+          A topic identifier representing a subject area that should be explicitly denied regardless of the allowed topics configuration.
+

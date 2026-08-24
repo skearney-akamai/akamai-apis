@@ -1,0 +1,7 @@
+name: version
+in: path
+required: true
+schema:
+  type: integer
+description: Version number of the FAI configuration.
+example: 3

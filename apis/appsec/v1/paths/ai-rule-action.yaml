@@ -1,0 +1,71 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/security-policies/{policyId}/ai-rules/{ruleId}/versions/{ruleVersionId}/action
+parameters:
+  - $ref: ../parameters/config-id-path.yaml
+  - $ref: ../parameters/version-number-path.yaml
+  - $ref: ../parameters/policy-id-path.yaml
+  - $ref: ../parameters/rule-id-path.yaml
+  - $ref: ../parameters/ai-rule-version-id-path.yaml
+get:
+  operationId: get-policy-ai-rule-action
+  summary: Get an AI rule's action
+  tags:
+  - "WAF rules: AI rules"
+  description: |
+    Returns the action for the specified AI rule.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully retrieved the AI rule's action.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/ai-rule-action-get-200.json
+          schema:
+            $ref: ../schemas/ai-rule-action-get-200.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml
+put:
+  operationId: put-policy-ai-rule-action
+  summary: Update an AI rule's action
+  tags:
+  - "WAF rules: AI rules"
+  description: |
+    Update the action for an AI rule.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/ai-rule-action-get-200.json
+        schema:
+          $ref: ../schemas/ai-rule-action-get-200.yaml
+  responses:
+    200:
+      description: |
+        Successfully updated the AI rule's action.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/ai-rule-action-get-200.json
+          schema:
+            $ref: ../schemas/ai-rule-action-get-200.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    403:
+      $ref: ../errors/403-client-write-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

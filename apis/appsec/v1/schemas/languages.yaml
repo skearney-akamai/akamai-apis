@@ -1,0 +1,13 @@
+type: object
+description: |
+  A collection of supported languages available for application context configuration and language detection rules.
+additionalProperties: false
+required:
+- languages
+properties:
+  languages:
+    type: array
+    description: |
+      The list of supported languages. Each language is identified by its ISO 639-3 three-letter code.
+    items:
+      $ref: ./language.yaml

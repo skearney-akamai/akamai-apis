@@ -1,0 +1,95 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/quota-policies/{quotaPolicyId}
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+- $ref: ../parameters/quota-policy-id-path.yaml
+get:
+  operationId: get-quota-policy
+  summary: Get a quota policy
+  tags:
+  - "Shared resources: Quota policies"
+  description: |
+    Return the specified quota policy.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully returned quota policy.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policy-200.json
+          schema:
+            $ref: ../schemas/quota-policy.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version or quota policy wasn't found.
+      $ref: ../errors/404.yaml
+put:
+  operationId: put-quota-policy
+  summary: Modify a quota policy
+  tags:
+  - "Shared resources: Quota policies"
+  description: |
+    Update an existing quota policy. Include the `lockVersion` from the current quota policy object to prevent conflicting concurrent modifications.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/quota-policy-put.json
+        schema:
+          $ref: ../schemas/quota-policy.yaml
+  responses:
+    200:
+      description: |
+        Successfully updated quota policy.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policy-200.json
+          schema:
+            $ref: ../schemas/quota-policy.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version or quota policy wasn't found.
+      $ref: ../errors/404.yaml
+delete:
+  operationId: delete-quota-policy
+  summary: Delete a quota policy
+  tags:
+  - "Shared resources: Quota policies"
+  description: |
+    Delete the specified quota policy. You can't delete a quota policy that is actively in use. To delete the policy, first remove it from all security policies that reference it.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    204:
+      description: |
+        Successfully deleted the quota policy.
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version or quota policy wasn't found.
+      $ref: ../errors/404.yaml

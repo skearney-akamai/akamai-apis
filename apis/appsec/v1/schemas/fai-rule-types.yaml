@@ -1,0 +1,13 @@
+type: object
+description: |
+  A collection of available Firewall for AI rule types and their configurable fields.
+additionalProperties: false
+required:
+- ruleTypes
+properties:
+  ruleTypes:
+    type: array
+    description: |
+      The list of available rule types. This list may grow over time as new detections are added.
+    items:
+      $ref: ./fai-rule-type.yaml

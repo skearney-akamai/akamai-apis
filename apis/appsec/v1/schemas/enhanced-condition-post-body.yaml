@@ -1,0 +1,44 @@
+type: object
+description: |
+  Collect data needed for condition matches on POST request body content.
+title: PostBodyCondition
+additionalProperties: false
+required:
+- className
+- type
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `PostBodyCondition`.
+    enum:
+    - PostBodyCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  type:
+    type: string
+    description: |
+      Specify the format of the POST body to parse. Either `JSON`, `XML`, `X_FORM_URLENCODED`, or `CUSTOM`.
+    enum:
+    - JSON
+    - XML
+    - X_FORM_URLENCODED
+    - CUSTOM
+  name:
+    type: string
+    description: |
+      Specify the name of the body field or parameter to inspect.
+  value:
+    type: string
+    description: |
+      Specify the value to match against the named body field.
+  variable:
+    type: string
+    description: |
+      Specify the variable path used to extract the value from the parsed body.

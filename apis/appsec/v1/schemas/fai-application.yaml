@@ -1,0 +1,106 @@
+type: object
+description: |
+  Contains details about an FAI application.
+additionalProperties: false
+required:
+- name
+- sampleRate
+- accessHostnames
+- connectionType
+properties:
+  faiApplicationId:
+    type: integer
+    description: |
+      A unique identifier for the FAI application.
+    readOnly: true
+  name:
+    type: string
+    description: |
+      The name you assigned to the FAI application.
+    minLength: 1
+    maxLength: 255
+  description:
+    type: string
+    description: |
+      A description of the FAI application.
+    minLength: 1
+    maxLength: 255
+  tags:
+    type: array
+    description: |
+      A list of tags associated with the FAI application.
+    items:
+      type: string
+      minLength: 1
+      maxLength: 255
+  faiConfigId:
+    type: integer
+    description: |
+      The FAI configuration identifier.
+  sampleRate:
+    type: integer
+    description: |
+      The percentage of traffic to sample, from 1 to 100.
+    minimum: 1
+    maximum: 100
+  accessHostnames:
+    type: array
+    description: |
+      A list of hostnames for data collection.
+    minItems: 1
+    items:
+      type: string
+      minLength: 1
+      maxLength: 255
+  accessEndpointPath:
+    type: string
+    description: |
+      The access endpoint path.
+    minLength: 1
+    maxLength: 255
+  connectionType:
+    type: string
+    description: |
+      The connection protocol type. Either `HTTP` or `WEBSOCKET`.
+    enum:
+    - HTTP
+    - WEBSOCKET
+  envelopeProtocol:
+    type: string
+    description: |
+      The WebSocket envelope protocol. Applicable when `connectionType` is `WEBSOCKET`. Supported values are `stomp`, `socketio`, `sockjs`, or `raw`.
+    enum:
+    - stomp
+    - socketio
+    - sockjs
+    - raw
+  inputSettings:
+    description: |
+      Input data settings for the FAI application.
+    allOf:
+    - $ref: fai-application-settings.yaml
+  outputSettings:
+    description: |
+      Output data settings for the FAI application.
+    allOf:
+    - $ref: fai-application-settings.yaml
+  createDate:
+    type: string
+    description: |
+      The ISO 8601 timestamp when the FAI application was created.
+    readOnly: true
+  createdBy:
+    type: string
+    description: |
+      The user who created the FAI application.
+    readOnly: true
+  updateDate:
+    type: string
+    description: |
+      The ISO 8601 timestamp when the FAI application was last updated.
+    readOnly: true
+  updatedBy:
+    type: string
+    description: |
+      The user who last updated the FAI application.
+    readOnly: true

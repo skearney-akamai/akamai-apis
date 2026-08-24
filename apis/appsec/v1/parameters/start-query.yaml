@@ -1,0 +1,8 @@
+name: start
+in: query
+required: false
+schema:
+  type: string
+  format: date-time
+description: Start time to filter results. Returns items created on or after this timestamp.
+example: "2024-01-01T00:00:00Z"

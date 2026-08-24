@@ -1,0 +1,8 @@
+name: end
+in: query
+required: false
+schema:
+  type: string
+  format: date-time
+description: End time period to filter results. Returns items created before or on this timestamp.
+example: "2024-12-31T23:59:59Z"

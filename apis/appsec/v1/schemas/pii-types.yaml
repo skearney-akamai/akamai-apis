@@ -1,0 +1,13 @@
+type: object
+description: |
+  A collection of pre-defined PII entity types available for use in PII detection rules.
+additionalProperties: false
+required:
+- piiTypes
+properties:
+  piiTypes:
+    type: array
+    description: |
+      The list of available pre-defined PII entity types.
+    items:
+      $ref: ./pii-entity-type.yaml

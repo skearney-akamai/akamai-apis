@@ -1,0 +1,13 @@
+type: object
+description: |
+  A collection of disallowed topics available for use in off-topic content moderation rules.
+additionalProperties: false
+required:
+- topics
+properties:
+  topics:
+    type: array
+    description: |
+      The list of available disallowed topics.
+    items:
+      $ref: ./disallowed-topic.yaml

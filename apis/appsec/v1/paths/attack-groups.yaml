@@ -1,0 +1,26 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /attack-groups
+get:
+  operationId: get-attack-groups
+  summary: List attack groups
+  tags:
+    - Managed Rules lookup
+  description: |
+    List all attack groups currently available in Akamai's catalog. Use this endpoint to discover attack group metadata independent of any specific security configuration.
+  responses:
+    200:
+      description: |
+        Successful response.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/attack-groups-200.json
+          schema:
+            $ref: ../schemas/attack-groups-get.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

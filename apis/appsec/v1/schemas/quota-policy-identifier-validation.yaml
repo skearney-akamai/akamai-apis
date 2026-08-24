@@ -1,0 +1,15 @@
+type: object
+description: |
+  Specify validation rules for a named client identifier value.
+additionalProperties: false
+properties:
+  blockIdentifierAbuse:
+    type: boolean
+    description: |
+      Block requests where the specified identifier value shows signs of abuse.
+  type:
+    type: string
+    description: |
+      Specify the validation type to apply.
+  range:
+    $ref: quota-policy-identifier-range.yaml

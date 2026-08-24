@@ -1,0 +1,7 @@
+name: faiConfigId
+in: path
+required: true
+schema:
+  type: string
+description: Unique identifier for the FAI configuration.
+example: "12345"

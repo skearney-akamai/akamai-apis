@@ -1,0 +1,11 @@
+type: object
+description: |
+  A collection of FAI configurations.
+additionalProperties: false
+properties:
+  fai-configurations:
+    type: array
+    description: |
+      Array of configuration objects.
+    items:
+      $ref: ./fai-configuration.yaml

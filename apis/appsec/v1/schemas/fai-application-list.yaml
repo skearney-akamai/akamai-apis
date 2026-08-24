@@ -1,0 +1,11 @@
+type: object
+description: |
+  FAI applications for a configuration version.
+additionalProperties: false
+properties:
+  faiApplications:
+    type: array
+    description: |
+      This configuration version's FAI applications.
+    items:
+      $ref: fai-application.yaml

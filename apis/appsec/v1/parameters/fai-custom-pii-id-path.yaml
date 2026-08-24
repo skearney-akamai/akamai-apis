@@ -1,0 +1,7 @@
+name: customPiiId
+in: path
+required: true
+schema:
+  type: string
+description: Unique identifier for the custom PII type.
+example: "67890"

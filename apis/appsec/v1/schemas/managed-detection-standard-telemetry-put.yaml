@@ -1,0 +1,50 @@
+type: object
+description: |
+  The Akamai-managed detection set is available only to internal users.
+x-akamai:
+  exclude-reason: INTERNAL
+title: AKAMAI_MANAGED
+additionalProperties: false
+required:
+- detectionSetType
+- detectionSettings
+properties:
+  detectionSetType:
+    type: string
+    description: |
+      Allows Akamai service reps to adjust detections and thresholds. `AKAMAI_MANAGED` is available only to internal users.
+    enum:
+    - AKAMAI_MANAGED
+  detectionSettings:
+    type: array
+    minItems: 9
+    maxItems: 9
+    uniqueItems: true
+    items:
+      type: object
+      description: |
+        INTERNAL.
+      additionalProperties: false
+      required:
+      - type
+      - sensitivity
+      properties:
+        type:
+          type: string
+          description: |
+            INTERNAL.
+          enum:
+          - BEHAVIORAL_TELEMETRY
+          - INSUFFICIENT_TELEMETRY
+          - TELEMETRY_REPLAY
+          - COOKIE_REPLAY
+          - DEVICE_ANOMALY
+          - CATAPULT
+          - IP_REQUEST_PATTERN
+          - DYNAMIC_NETWORK_PATTERN
+          - PROOF_OF_WORK
+        sensitivity:
+          type: integer
+          description: |
+            INTERNAL.
+          maximum: 10

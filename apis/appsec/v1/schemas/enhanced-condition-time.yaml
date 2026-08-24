@@ -1,0 +1,39 @@
+type: object
+description: |
+  Collect data needed for condition matches on time windows.
+title: TimeCondition
+additionalProperties: false
+required:
+- className
+- startTime
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `TimeCondition`.
+    enum:
+    - TimeCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  startTime:
+    type: string
+    description: |
+      Specify the start of the time window.
+  endTime:
+    type: string
+    description: |
+      Specify the end of the time window.
+  duration:
+    type: integer
+    description: |
+      Specify the duration of the time window in seconds. Use either `duration` or `endTime` to define the end of the window, not both.
+  repeatInterval:
+    type: integer
+    description: |
+      Specify the interval in seconds at which the time window repeats.

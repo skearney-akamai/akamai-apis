@@ -1,0 +1,11 @@
+type: object
+description: |
+  A collection of applications.
+additionalProperties: false
+properties:
+  applications:
+    type: array
+    description: |
+      Array of application objects.
+    items:
+      $ref: ./application.yaml

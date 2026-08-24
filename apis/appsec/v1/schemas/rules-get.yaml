@@ -1,0 +1,6 @@
+type: array
+minItems: 0
+description: |
+  The set of managed rules in the catalog.
+items:
+  $ref: rule-get.yaml

@@ -1,0 +1,8 @@
+name: Fai-Api-Key
+in: header
+description: |
+  The API Key you generated in your Firewall for AI configuration.
+required: true
+schema:
+  type: string
+  example: XKJF12345CVBXKJF12345CVBXKJF1234

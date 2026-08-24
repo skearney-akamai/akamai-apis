@@ -1,0 +1,44 @@
+type: object
+description: |
+  Collect data needed for condition matches on filenames.
+title: FilenameCondition
+additionalProperties: false
+required:
+- className
+- value
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is  `FilenameCondition`.
+    enum:
+    - FilenameCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify filenames to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  valueCase:
+    type: boolean
+    description: |
+      Specify whether to consider the case sensitivity of the provided filenames.
+  valueWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards.
+  recursive:
+    type: boolean
+    description: |
+      Specify whether to match filenames in subdirectories recursively.

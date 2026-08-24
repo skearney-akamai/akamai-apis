@@ -1,0 +1,8 @@
+name: disableLegacyEvasivePathMatch
+in: query
+schema:
+  type: boolean
+  default: false
+  example: true
+description: |
+  Disables legacy evasive path match instead of failing if it's enabled.

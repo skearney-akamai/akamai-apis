@@ -1,0 +1,6 @@
+description: |
+  Your monthly quota limit.
+required: true
+schema:
+  type: integer
+  example: 100000

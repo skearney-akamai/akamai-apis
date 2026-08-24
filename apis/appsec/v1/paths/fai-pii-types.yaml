@@ -1,0 +1,23 @@
+get:
+  operationId: get-pii-types
+  x-akamai:
+    path-info: /pii-types
+  summary: List pre-defined PII entity types
+  tags:
+  - Reference data
+  description: |
+    List all available PII entity types that can be used in PII detection rules.
+  responses:
+    200:
+      description: |
+        Successful return of PII types.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-pii-types-200.json
+          schema:
+            $ref: ../schemas/pii-types.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml

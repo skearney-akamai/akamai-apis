@@ -1,0 +1,8 @@
+name: disableNewUrlEvasionDefense
+in: query
+schema:
+  type: boolean
+  default: false
+  example: true
+description: |
+  Disables the new URL evasion defense setting instead of failing if it's enabled.

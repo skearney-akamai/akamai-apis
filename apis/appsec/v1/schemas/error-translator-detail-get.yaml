@@ -1,0 +1,123 @@
+type: object
+description: |
+  Contains the security event diagnostics for a translated error reference code.
+additionalProperties: false
+required:
+  - errorReferenceCode
+  - timestamp
+properties:
+  errorReferenceCode:
+    type: string
+    description: |
+      The error reference code that identifies the security event.
+  timestamp:
+    type: string
+    description: |
+      The time when the security event occurred.
+    format: date-time
+  failureReasonCategories:
+    type: array
+    minItems: 0
+    description: |
+      The security protections categories used in blocking the request. Either `WAF`, `BOT`, `MALWARE_PROTECTION`, `UNCLASSIFIED`, `CUSTOM_RULE`, `USER_RISK`, `DOS`, `REPUTATION`, `NETWORK_LIST` or `WAF_EVALUATION`.
+    items:
+      type: string
+      enum:
+      - WAF
+      - BOT
+      - MALWARE_PROTECTION
+      - UNCLASSIFIED
+      - CUSTOM_RULE
+      - USER_RISK
+      - DOS
+      - REPUTATION
+      - NETWORK_LIST
+      - WAF_EVALUATION
+      x-akamai:
+        enum-descriptions:
+          WAF: |
+            The request was blocked by Web Application Firewall (WAF) protections.
+          BOT: |
+            The request was blocked by Bot Manager.
+          MALWARE_PROTECTION: |
+            The request was blocked by Malware Protection.
+          UNCLASSIFIED: |
+            The request was blocked by a protection not classified into the other categories.
+          CUSTOM_RULE: |
+            The request was blocked by a custom rule.
+          USER_RISK: |
+            The request was blocked by Account Protector's User Risk protections.
+          DOS: |
+            The request was blocked by Denial of Service (DoS) protections.
+          REPUTATION: |
+            The request was blocked by client reputation protections.
+          NETWORK_LIST: | 
+            The request was blocked by Network List protections.
+          WAF_EVALUATION: |
+            The request was blocked by evaluation rules.
+  requestInfo:
+    type: object
+    description: |
+      Details about the end user's request that triggered the security event.
+    additionalProperties: false
+    properties:
+      url:
+        type: string
+        description: |
+          The URL of the request.
+      status:
+        type: integer
+        description: |
+          The HTTP status code returned for the request.
+      connectingIp:
+        type: string
+        description: |
+          The IP address that the request originated from.
+      asn:
+        type: string
+        description: |
+          The Autonomous System Number (ASN) for the connecting IP address.
+      countryCode:
+        type: string
+        description: |
+          The two-letter ISO 3166 country code where the request originated from.
+  securityInfo:
+    type: object
+    description: |
+      Details about the security configuration and policy that processed the request.
+    additionalProperties: false
+    properties:
+      configId:
+        type: string
+        description: |
+          Uniquely identifies the security configuration.
+      configName:
+        type: string
+        description: |
+          The name of the security configuration.
+      configVersion:
+        type: integer
+        description: |
+          The version of the security configuration.
+      configVersionLink:
+        type: string
+        description: |
+          A hypermedia link to the security configuration version.
+      policyId:
+        type: string
+        description: |
+          Uniquely identifies the security policy.
+      policyLink:
+        type: string
+        description: |
+          A hypermedia link to the security policy.
+  wsaInfo:
+    type: object
+    description: |
+      Details that link to the Web Security Analytics (WSA) data for the security event.
+    additionalProperties: false
+    properties:
+      resultUrl:
+        type: string
+        description: |
+          A link to the Web Security Analytics (WSA) view for the security event.

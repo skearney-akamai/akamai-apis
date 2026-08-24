@@ -1,0 +1,65 @@
+type: object
+description: |
+  Represents the result of a configuration version activation.
+additionalProperties: false
+required:
+- activationId
+- faiConfigId
+- version
+- status
+- createdBy
+- createdDate
+properties:
+  activationId:
+    type: string
+    description: |
+      Unique identifier for the activation.
+    readOnly: true
+  faiConfigId:
+    type: string
+    description: |
+      Configuration ID.
+    readOnly: true
+  version:
+    type: integer
+    description: |
+      Activated version number.
+    readOnly: true
+  status:
+    type: string
+    description: |
+      Activation result. Either `SUCCEEDED`, `FAILED`, `IN_PROGRESS` or `PENDING`.
+    enum:
+    - SUCCEEDED
+    - FAILED
+    - IN_PROGRESS
+    - PENDING
+    x-enum-descriptions:
+      SUCCEEDED: Activation completed successfully.
+      FAILED: Activation failed due to an error.
+      IN_PROGRESS: Activation is currently in progress.
+      PENDING: Activation is queued and waiting to start.
+    readOnly: true
+  createdBy:
+    type: string
+    description: |
+      User who initiated the activation.
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+    description: |
+      ISO 8601 timestamp when the activation was initiated.
+    readOnly: true
+  completedDate:
+    type: string
+    format: date-time
+    description: |
+      ISO 8601 timestamp when the activation completed. `null` while `PENDING` or `IN_PROGRESS`.
+    readOnly: true
+    nullable: true
+  note:
+    type: string
+    description: |
+      Optional user-provided note describing the reason for activation.
+    maxLength: 255

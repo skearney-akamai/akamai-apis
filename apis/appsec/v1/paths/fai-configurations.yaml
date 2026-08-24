@@ -1,0 +1,61 @@
+get:
+  operationId: get-fai-configurations
+  x-akamai:
+    path-info: /fai-configurations
+  summary: List FAI configurations
+  tags:
+  - Configurations
+  description: |
+    List all FAI configurations for the account.
+  responses:
+    200:
+      description: |
+        Successful return of FAI configurations.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-fai-configurations-200.json
+          schema:
+            $ref: ../schemas/fai-configurations.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml
+post:
+  operationId: post-fai-configuration
+  x-akamai:
+    path-info: /fai-configurations
+  summary: Create an FAI configuration
+  tags:
+  - Configurations
+  description: |
+    Create a new FAI configuration. This also creates the initial version of the configuration.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/post-fai-configuration-request.json
+        schema:
+          $ref: ../schemas/fai-configuration.yaml
+  responses:
+    201:
+      description: |
+        Configuration created successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-fai-config.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-fai-configuration-201.json
+          schema:
+            $ref: ../schemas/fai-configuration.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

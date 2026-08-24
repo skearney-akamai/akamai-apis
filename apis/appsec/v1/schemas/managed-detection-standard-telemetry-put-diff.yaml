@@ -1,0 +1,226 @@
+type: object
+description: |
+  The Akamai-managed detection set is available only to internal users.
+x-akamai:
+  exclude-reason: INTERNAL
+title: AKAMAI_MANAGED
+additionalProperties: false
+properties:
+  detectionSetType:
+    type: object
+    description: |
+      Allows Akamai service reps to adjust detections and thresholds. `AKAMAI_MANAGED` is available only to internal users.This object [represents a diff](doc:diff-configuration-versions)).
+    properties:
+      from:
+        type: string
+        nullable: true
+        description: |
+          Value from the version assigned as `from`.
+      to:
+        type: string
+        description: |
+          Value from the version assigned as `to`.
+        nullable: true
+      outcome:
+        $ref: outcome-diff.yaml
+  detectionSettings:
+    type: object
+    properties:
+      outcome:
+        $ref: outcome-diff.yaml
+      added:
+        type: array
+        description: |
+          Data added between the two versions.
+        items:
+          type: object
+          description: |
+            INTERNAL.
+          additionalProperties: false
+          properties:
+            type:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: string
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: string
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            sensitivity:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: integer
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: integer
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            changesCount:
+              $ref: changes-count-diff.yaml
+            outcome:
+              $ref: outcome-diff.yaml
+      removed:
+        type: array
+        description: |
+          Data removed between the two versions.
+        items:
+          type: object
+          description: |
+            INTERNAL.
+          additionalProperties: false
+          properties:
+            type:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: string
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: string
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            sensitivity:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: integer
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: integer
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            changesCount:
+              $ref: changes-count-diff.yaml
+            outcome:
+              $ref: outcome-diff.yaml
+      modified:
+        type: array
+        description: |
+          Data modified between the two versions.
+        items:
+          type: object
+          description: |
+            INTERNAL.
+          additionalProperties: false
+          properties:
+            type:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: string
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: string
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            sensitivity:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: integer
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: integer
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            changesCount:
+              $ref: changes-count-diff.yaml
+            outcome:
+              $ref: outcome-diff.yaml
+      unmodified:
+        type: array
+        description: |
+          Data that doesn't change between the two versions. This appears only when the diff request specifies to include `UNMODIFIED` data.
+        items:
+          type: object
+          description: |
+            INTERNAL.
+          additionalProperties: false
+          properties:
+            type:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: string
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: string
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            sensitivity:
+              type: object
+              description: |
+                INTERNALThis object [represents a diff](doc:diff-configuration-versions)).
+              properties:
+                from:
+                  type: integer
+                  nullable: true
+                  description: |
+                    Value from the version assigned as `from`.
+                to:
+                  type: integer
+                  description: |
+                    Value from the version assigned as `to`.
+                  nullable: true
+                outcome:
+                  $ref: outcome-diff.yaml
+            changesCount:
+              $ref: changes-count-diff.yaml
+            outcome:
+              $ref: outcome-diff.yaml
+  changesCount:
+    $ref: changes-count-diff.yaml
+  outcome:
+    $ref: outcome-diff.yaml

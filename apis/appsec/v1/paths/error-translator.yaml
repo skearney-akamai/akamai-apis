@@ -1,0 +1,41 @@
+x-akamai:
+  path-info: /error-translator/{errorReferenceCode}
+parameters:
+- $ref: ../parameters/error-reference-code-path.yaml
+get:
+  operationId: get-error-translator-lookup
+  summary: Translate an error reference code
+  tags:
+    - Error code translator
+  description: |
+    Returns a summary of the specified error so you can investigate why a request was blocked. You can look up an Akamai error reference code from the past 31 days, 
+  responses:
+    200:  
+      description: |
+        Successful response.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/error-translator-200.json
+          schema:
+            $ref: ../schemas/error-translator-detail-get.yaml
+    400:
+      description: |
+          [Invalid](ref:400). Client error, such as invalid or malformed input.
+      content:
+        application/problem+json:
+          example:
+            $ref: ../examples/error-translator-400.json
+          schema:
+            $ref: ../schemas/problem-details.yaml
+    404:
+      description: |
+        [Not found](ref:404). The requested resource could not be found.
+      content:
+        application/problem+json:
+          example:
+            $ref: ../examples/error-translator-404.json
+          schema:
+            $ref: ../schemas/problem-details.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

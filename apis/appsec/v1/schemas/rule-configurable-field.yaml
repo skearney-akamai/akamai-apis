@@ -1,0 +1,30 @@
+type: object
+description: |
+  Describes a single configurable field within a rule type.
+additionalProperties: false
+properties:
+  fieldName:
+    type: string
+    description: |
+      Field name, such as `sensitivity`, `maxSize`, or `topics`.
+  fieldType:
+    type: string
+    description: |
+      Data type of the field. One of `string`, `number`, `boolean`, or `array`.
+    enum:
+    - string
+    - number
+    - boolean
+    - array
+    x-enum-descriptions:
+      string: A string value.
+      number: A numeric value.
+      boolean: A true or false value.
+      array: A list of values.
+  enum:
+    type: array
+    description: |
+      Allowed values for the field. Present only when the field has a constrained set of values, and omitted otherwise. Omitted for boolean fields.
+    items:
+      type: string
+

@@ -1,0 +1,7 @@
+description: |
+  The absolute URL of the newly created access key. Returned in the 201 Created response so you can retrieve the new resource.
+required: true
+schema:
+  type: string
+  
+  example: https://{hostname}/appsec/v1/fai-configurations/12345/keys/ak_prod_new98765xyz

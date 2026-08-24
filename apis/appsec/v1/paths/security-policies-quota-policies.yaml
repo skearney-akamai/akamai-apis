@@ -1,0 +1,34 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/security-policies/quota-policies
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+get:
+  operationId: get-security-policies-quota-policy-actions
+  summary: List quota policy actions for all security policies
+  tags:
+  - Quota policy actions
+  description: |
+    Review quota policy actions across all security policies in this configuration version.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully returned quota policy actions.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policy-all-actions-200.json
+          schema:
+            $ref: ../schemas/quota-policy-all-actions.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version wasn't found.
+      $ref: ../errors/404.yaml

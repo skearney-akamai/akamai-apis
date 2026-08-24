@@ -1,0 +1,10 @@
+allOf:
+  - $ref: './url-evasion-defense-definitions.yaml#/definitions/UrlEvasionDefenseCommon'
+  - type: object
+    properties:
+      rules:
+        type: array
+        description: |
+          The list of URL evasion mitigation rules.
+        items:
+          $ref: './url-evasion-defense-definitions.yaml#/definitions/RuleResponse'

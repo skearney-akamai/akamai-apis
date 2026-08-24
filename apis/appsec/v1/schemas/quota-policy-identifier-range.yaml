@@ -1,0 +1,13 @@
+type: object
+description: |
+  Specify the allowed numeric range for the identifier value.
+additionalProperties: false
+properties:
+  from:
+    type: number
+    description: |
+      Specify the lower bound of the range (inclusive).
+  to:
+    type: number
+    description: |
+      Specify the upper bound of the range (inclusive).

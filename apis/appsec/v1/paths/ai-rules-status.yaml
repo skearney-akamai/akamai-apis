@@ -1,0 +1,69 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/security-policies/{policyId}/ai-rules/status
+parameters:
+  - $ref: ../parameters/config-id-path.yaml
+  - $ref: ../parameters/version-number-path.yaml
+  - $ref: ../parameters/policy-id-path.yaml
+get:
+  operationId: get-policy-ai-rules-status
+  summary: Get AI rules status
+  tags:
+  - "WAF rules: AI rules"
+  description: |
+    Returns whether AI rules are enabled for the security policy.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully retrieved AI rules status.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/ai-rules-status.json
+          schema:
+            $ref: ../schemas/ai-rules-status.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml
+put:
+  operationId: put-policy-ai-rules-status
+  summary: Update AI rules status
+  tags:
+  - "WAF rules: AI rules"
+  description: |
+    Enable or disable all AI rules for the security policy.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/ai-rules-status.json
+        schema:
+          $ref: ../schemas/ai-rules-status.yaml
+  responses:
+    200:
+      description: |
+        Successfully updated AI rules status.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/ai-rules-status.json
+          schema:
+            $ref: ../schemas/ai-rules-status.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    403:
+      $ref: ../errors/403-client-write-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

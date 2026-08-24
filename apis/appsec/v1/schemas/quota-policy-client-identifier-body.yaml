@@ -1,0 +1,27 @@
+title: Request body parameter
+type: object
+description: |
+  Identify a client by a named request body parameter.
+additionalProperties: false
+required:
+- identifier
+- name
+properties:
+  identifier:
+    type: string
+    description: |
+      The value for this type of client identifier is `request-body`.
+  order:
+    type: integer
+    description: |
+      Specify the position of this identifier in the fallback chain. The system attempts lower values first.
+  name:
+    type: string
+    description: |
+      Specify the name of the request body parameter to inspect.
+  encoding:
+    type: string
+    description: |
+      Specify the encoding of the body parameter value.
+  validation:
+    $ref: quota-policy-identifier-validation.yaml

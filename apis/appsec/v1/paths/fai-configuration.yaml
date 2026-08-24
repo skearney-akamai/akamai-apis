@@ -1,0 +1,89 @@
+get:
+  operationId: get-fai-configuration
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}
+  summary: Get a configuration
+  tags:
+  - Configurations
+  description: |
+    Get details of a specific FAI configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of configuration.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-fai-configuration-200.json
+          schema:
+            $ref: ../schemas/fai-configuration.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+put:
+  operationId: put-fai-configuration
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}
+  summary: Update a configuration
+  tags:
+  - Configurations
+  description: |
+    Update an existing FAI configuration. Only the name and description fields can be modified. Any write-once or read-only field set will be ignored.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/put-fai-configuration-request.json
+        schema:
+          $ref: ../schemas/fai-configuration.yaml
+  responses:
+    200:
+      description: |
+        Configuration updated successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/put-fai-configuration-200.json
+          schema:
+            $ref: ../schemas/fai-configuration.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml
+delete:
+  operationId: delete-fai-configuration
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}
+  summary: Delete an FAI configuration
+  tags:
+  - Configurations
+  description: |
+    Delete a specific configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    204:
+      description: |
+        Configuration deleted successfully. No response body.
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    500:
+      $ref: ../errors/500.yaml

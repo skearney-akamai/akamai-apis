@@ -1,0 +1,72 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/fai-protection
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+get:
+  operationId: get-fai-protection
+  summary: Get FAI protection settings
+  tags:
+  - FAI protection
+  description: |
+    Returns the FAI protection settings for a specific security configuration version.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully returned FAI protection settings.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/fai-protection-200.json
+          schema:
+            $ref: ../schemas/fai-protection.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to FAI protection settings in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). The security configuration version wasn't found.
+      $ref: ../errors/404.yaml
+put:
+  operationId: put-fai-protection
+  summary: Modify FAI protection settings
+  tags:
+  - FAI protection
+  description: |
+    Update the FAI protection settings for a specific security configuration version. _Products:_ All.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/fai-protection-put.json
+        schema:
+          $ref: ../schemas/fai-protection.yaml
+  responses:
+    200:
+      description: |
+        Successfully updated FAI protection settings.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/fai-protection-200.json
+          schema:
+            $ref: ../schemas/fai-protection.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to FAI protection settings in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). The security configuration version wasn't found.
+      $ref: ../errors/404.yaml

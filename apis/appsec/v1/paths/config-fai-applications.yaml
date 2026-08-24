@@ -1,0 +1,75 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/fai-applications
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+get:
+  operationId: get-fai-applications
+  summary: List FAI applications
+  tags:
+  - FAI applications
+  description: |
+    Returns FAI applications for a specific security configuration version.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully returned FAI applications.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/fai-applications-200.json
+          schema:
+            $ref: ../schemas/fai-application-list.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to FAI applications in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). The security configuration version wasn't found.
+      $ref: ../errors/404.yaml
+post:
+  operationId: post-fai-applications
+  summary: Create an FAI application
+  tags:
+  - FAI applications
+  description: |
+    Create a new FAI application for a specific configuration version. _Products:_ All.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/fai-application-post.json
+        schema:
+          $ref: ../schemas/fai-application.yaml
+  responses:
+    201:
+      headers:
+        Location:
+          $ref: ../headers/location.yaml
+      description: |
+        Successfully created an FAI application.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/fai-application-200.json
+          schema:
+            $ref: ../schemas/fai-application.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to FAI applications in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). The security configuration version wasn't found.
+      $ref: ../errors/404.yaml

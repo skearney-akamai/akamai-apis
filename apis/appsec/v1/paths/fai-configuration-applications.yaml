@@ -1,0 +1,71 @@
+get:
+  operationId: get-applications
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/applications
+  summary: List applications
+  tags:
+  - Applications
+  description: |
+    List all applications for a configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of applications.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-applications-200.json
+          schema:
+            $ref: ../schemas/applications.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+post:
+  operationId: post-application
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/applications
+  summary: Create an application
+  tags:
+  - Applications
+  description: |
+    Creates a new API-type application.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/post-application-request.json
+        schema:
+          $ref: ../schemas/application.yaml
+  responses:
+    201:
+      description: |
+        Application created successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-application.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-application-201.json
+          schema:
+            $ref: ../schemas/application.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

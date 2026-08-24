@@ -1,0 +1,27 @@
+type: object
+description: |
+  Contains details about an attack group.
+additionalProperties: false
+required:
+  - attackGroupId
+  - attackGroupName
+  - description
+  - modifiedTime
+properties:
+  attackGroupId:
+    type: string
+    description: |
+      Uniquely identifies an attack group.
+  attackGroupName:
+    type: string
+    description: |
+      The display name of the attack group.
+  description:
+    type: string
+    description: |
+      Describes the attack group.
+  modifiedTime:
+    type: string
+    description: |
+      The time when Akamai last updated the attack group.
+    format: date-time

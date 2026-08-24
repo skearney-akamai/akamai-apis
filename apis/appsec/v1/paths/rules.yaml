@@ -1,0 +1,26 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /rules
+get:
+  operationId: get-rules
+  summary: List managed rules
+  tags:
+    - Managed Rules lookup
+  description: |
+    List all managed rules across rule types currently available in Akamai's catalog, either `ase`, `rapid`, or `ai`.  Use this endpoint to view rule metadata independent of any specific security configuration.
+  responses:
+    200:
+      description: |
+        Successful response.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/rules-200.json
+          schema:
+            $ref: ../schemas/rules-get.yaml
+    400:
+      $ref: ../errors/400-client-read-errors.yaml
+    404:
+      $ref: ../errors/404-client-read-errors.yaml
+    500:
+      $ref: ../errors/500-server-errors.yaml

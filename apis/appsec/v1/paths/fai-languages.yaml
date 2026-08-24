@@ -1,0 +1,23 @@
+get:
+  operationId: get-languages
+  x-akamai:
+    path-info: /languages
+  summary: List available languages
+  tags:
+  - Reference data
+  description: |
+    Retrieve the list of available languages for application context and language detection rules. The list of supported languages may grow over time.
+  responses:
+    200:
+      description: |
+        Successful return of available languages.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-languages-200.json
+          schema:
+            $ref: ../schemas/languages.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml

@@ -1,0 +1,7 @@
+name: keyId
+in: path
+required: true
+schema:
+  type: string
+description: Unique identifier for the access key.
+example: "54321"

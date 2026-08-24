@@ -1,0 +1,23 @@
+get:
+  operationId: get-rule-types
+  x-akamai:
+    path-info: /rules
+  summary: List FAI rule types
+  tags:
+  - Reference data
+  description: |
+    List all available FAI rule types and their configurable fields. The list of rules may grow over time as new detections are added.
+  responses:
+    200:
+      description: |
+        Successful return of rule types.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-rule-types-200.json
+          schema:
+            $ref: ../schemas/fai-rule-types.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml

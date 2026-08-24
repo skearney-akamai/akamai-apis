@@ -1,0 +1,24 @@
+allOf:
+- $ref: ./rule.yaml
+- type: object
+  description: |
+    Settings for a rule that detects prompt injection and toxicity with configurable sensitivity levels. This rule lets you fine-tune detection thresholds to balance security protection against false positives based on the application's risk tolerance and use case requirements.
+  additionalProperties: false
+  required:
+  - sensitivity
+  properties:
+    sensitivity:
+      type: string
+      description: |
+        The sensitivity level for detection. `HIGH` provides the most aggressive detection with lower tolerance for potential threats, `MEDIUM` balances detection accuracy with false positive rates, and `LOW` focuses on high-confidence detections only. Higher sensitivity levels may result in more false positives but provide stronger security protection.
+      enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+    detectionType:
+      type: string
+      description: |
+        The type of threat this sensitivity rule detects. This determines which detection engine and model to use for analysis.
+      enum:
+      - PROMPT_INJECTION
+      - TOXICITY

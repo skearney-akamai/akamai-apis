@@ -1,0 +1,11 @@
+type: object
+description: |
+  A collection of access keys.
+additionalProperties: false
+properties:
+  keys:
+    type: array
+    description: |
+      Array of access key objects.
+    items:
+      $ref: ./fai-access-key.yaml

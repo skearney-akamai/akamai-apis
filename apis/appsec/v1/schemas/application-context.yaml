@@ -1,0 +1,22 @@
+type: object
+description: |
+  Represents the application context for a Firewall for AI configuration version. The application context provides metadata about the LLM application's intended use case, including the supported languages for user interactions and the system prompt that defines the application's behavior and scope. This information helps the firewall understand the application's legitimate operational parameters and detect anomalous or malicious prompts that fall outside expected boundaries.
+additionalProperties: false
+properties:
+  languages:
+    type: array
+    description: |
+      Array of allowed language codes for user interactions with the LLM application. Languages are specified with ISO 639-3 three-letter language codes, such as `eng` for English, `fra` for French, and `deu` for German. This list defines the expected languages for legitimate user prompts. When combined with language detection rules, prompts in unexpected languages can be flagged or blocked to prevent certain types of attacks. Run the [List langauges](ref:get-languages) operation to get the full list of available language codes the platform supports. If not specified or empty, no language restrictions are applied.
+    items:
+      type: string
+      description: |
+        A three-letter ISO 639-3 language code representing an allowed language for user interactions.
+      pattern: "^[a-z]{3}$"
+      minLength: 3
+      maxLength: 3
+  systemPrompt:
+    type: string
+    description: |
+      The system prompt that defines the LLM application's intended behavior, role, and operational scope. The system prompt provides critical context about the application's purpose and constraints, such as "You are a customer support assistant for an e-commerce platform" or "This application provides medical information for healthcare professionals." This information helps the Firewall for AI understand the legitimate use case boundaries and detect prompts that attempt to override or bypass the intended system behavior through prompt injection attacks. Maximum length is 2048 characters. This field is optional but recommended for improved security posture.
+    maxLength: 2048
+    minLength: 1

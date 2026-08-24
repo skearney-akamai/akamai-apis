@@ -1,0 +1,71 @@
+get:
+  operationId: get-custom-pii-types
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/custom-pii-types
+  summary: List custom PII types
+  tags:
+  - Custom PII types
+  description: |
+    List all custom PII types defined for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of custom PII entities.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-custom-pii-types-200.json
+          schema:
+            $ref: ../schemas/custom-pii-types.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+post:
+  operationId: post-custom-pii-type
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/custom-pii-types
+  summary: Create a custom PII type
+  tags:
+  - Custom PII types
+  description: |
+    Create a new custom PII type for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/post-custom-pii-type-request.json
+        schema:
+          $ref: ../schemas/custom-pii-type.yaml
+  responses:
+    201:
+      description: |
+        Custom PII entity created successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-custom-pii-type.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-custom-pii-type-201.json
+          schema:
+            $ref: ../schemas/custom-pii-type.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

@@ -1,0 +1,92 @@
+get:
+  operationId: get-application
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/applications/{userApplicationId}
+  summary: Get an application
+  tags:
+  - Applications
+  description: |
+    Retrieve details of a specific application.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/user-application-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of application details.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-application-200.json
+          schema:
+            $ref: ../schemas/application.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+put:
+  operationId: put-application
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/applications/{userApplicationId}
+  summary: Update an application
+  tags:
+  - Applications
+  description: |
+    Updates an existing API type application.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/user-application-id-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/put-application-request.json
+        schema:
+          $ref: ../schemas/application.yaml
+  responses:
+    200:
+      description: |
+        Application updated successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/put-application-200.json
+          schema:
+            $ref: ../schemas/application.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml
+delete:
+  operationId: delete-application
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/applications/{userApplicationId}
+  summary: Delete an application
+  tags:
+  - Applications
+  description: |
+    Delete an application from an API type configuration. Detections previously associated with this application will retain their historical association but no new detections can be linked to it.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/user-application-id-path.yaml
+  responses:
+    204:
+      description: |
+        Application deleted successfully. No response body.
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

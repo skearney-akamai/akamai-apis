@@ -1,0 +1,11 @@
+type: object
+description: |
+  Contains FAI protection settings for a configuration version.
+additionalProperties: false
+required:
+- enabled
+properties:
+  enabled:
+    type: boolean
+    description: |
+      Whether FAI protection is enabled for this configuration version.

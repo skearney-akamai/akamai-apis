@@ -1,0 +1,46 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/security-policies/{policyId}/quota-policies/{quotaPolicyId}
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+- $ref: ../parameters/policy-id-path.yaml
+- $ref: ../parameters/quota-policy-id-path.yaml
+put:
+  operationId: put-policy-quota-policy-action
+  summary: Modify a quota policy action
+  tags:
+  - Quota policy actions
+  description: |
+    Update the action settings for a specific quota policy within a security policy. Set `action` to `alert` to log events when the quota threshold is reached, or `none` to disable enforcement of this quota policy for the security policy.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/quota-policy-action-put.json
+        schema:
+          $ref: ../schemas/quota-policy-action.yaml
+  responses:
+    200:
+      description: |
+        Successfully updated quota policy action.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policy-action-put.json
+          schema:
+            $ref: ../schemas/quota-policy-action.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version, security policy, or quota policy wasn't found.
+      $ref: ../errors/404.yaml

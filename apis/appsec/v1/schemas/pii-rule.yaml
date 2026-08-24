@@ -1,0 +1,29 @@
+allOf:
+- $ref: ./rule.yaml
+- type: object
+  description: |
+    Settings for a rule that detects and protects personally identifiable information (PII). This rule enables automatic detection and redaction of sensitive personal data such as credit card numbers, social security numbers, email addresses, phone numbers, and custom PII patterns. This helps ensure compliance with data privacy regulations like GDPR, CCPA, and HIPAA by preventing sensitive information from being exposed to LLMs or logged in responses.
+  additionalProperties: false
+  required:
+  - maskPii
+  properties:
+    maskPii:
+      type: boolean
+      description: |
+        Determines whether detected PII should be masked (redacted) when the rule is triggered with a MODIFY action. When `true`, detected PII entities are replaced with the configured `redactionText`, such as `[REDACTED]`. When `false` with `ALERT` or `DENY` actions, PII is detected but not masked in the content.
+    piiEntities:
+      type: array
+      description: |
+        Predefined PII entity types to detect in the content. These are standard PII types provided by the platform such as `CREDIT_CARD`, `SSN`, `EMAIL`, `PHONE_NUMBER`, `IP_ADDRESS`, and so on. Run the [List pre-defined PII entity types](ref:get-pii-types) operation to get available predefined PII entity types. If not specified or empty, no predefined PII types are detected.
+      items:
+        type: string
+        description: |
+          A predefined PII entity type identifier. Must be one of the valid types returned by the [List pre-defined PII entity types](ref:get-pii-types) operation.
+    customPiiEntities:
+      type: array
+      description: |
+        List of custom PII entity identifiers to detect using user-defined regex patterns. Custom PII entities are created via the [Create a custom PII type](ref:post-custom-pii-type) operation and allow detection of organization-specific sensitive data patterns such as employee IDs, internal account numbers, or proprietary identifiers. If not specified or empty, no custom PII types are detected.
+      items:
+        type: string
+        description: |
+          A custom PII entity identifier (`customPiiId`) that references a previously created custom PII type definition. The identifier must exist in the current configuration version.

@@ -1,0 +1,48 @@
+type: object
+description: |
+  Contains details about a managed rule.
+additionalProperties: false
+required:
+  - ruleId
+  - ruleName
+  - description
+  - attackGroups
+  - ruleType
+  - modifiedTime
+properties:
+  ruleId:
+    type: integer
+    description: |
+      Uniquely identifies a managed rule.
+  ruleName:
+    type: string
+    description: |
+      The name of the managed rule.
+  description:
+    type: string
+    description: |
+      Describes the managed rule.
+  attackGroups:
+    type: array
+    minItems: 0
+    description: |
+      The attack groups this rule belongs to.
+    items:
+      type: string
+  ruleType:
+    type: string
+    description: |
+      The category of the managed rule:
+
+      - `ase`: Adaptive Security Engine rule.
+      - `rapid`: Rapid rule.
+      - `ai`: AI rule.
+    enum:
+    - ase
+    - rapid
+    - ai
+  modifiedTime:
+    type: string
+    description: |
+      The time when Akamai last updated the rule.
+    format: date-time

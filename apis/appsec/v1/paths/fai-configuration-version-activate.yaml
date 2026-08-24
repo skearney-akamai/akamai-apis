@@ -1,0 +1,45 @@
+post:
+  operationId: post-fai-configuration-version-activate
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/activate
+  summary: Activate an FAI configuration version
+  tags:
+  - Configuration versions
+  description: |
+    Activate a specific version of an FAI configuration. Once activated, the version is deployed and enforced.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  requestBody:
+    required: false
+    content:
+      application/json:
+        example:
+          $ref: ../examples/post-activation-request.json
+        schema:
+          $ref: ../schemas/activation-note.yaml
+  responses:
+    201:
+      description: |
+        Activation initiated successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-activation.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-activation-201.json
+          schema:
+            $ref: ../schemas/fai-activation.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

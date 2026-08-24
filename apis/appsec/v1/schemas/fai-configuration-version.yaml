@@ -1,0 +1,98 @@
+type: object
+description: |
+  Represents a specific version of a Firewall for AI configuration, including its security rules, activation status, and version metadata.
+additionalProperties: false
+properties:
+  faiConfig:
+    description: |
+      Parent configuration metadata.
+    readOnly: true
+    allOf:
+    - $ref: ./fai-configuration.yaml
+  version:
+    type: integer
+    description: |
+      The version number of this configuration. Version numbers are sequential and auto-incremented starting from 1.
+    minimum: 1
+    readOnly: true
+  configVersionId:
+    type: string
+    description: |
+      Unique identifier for this configuration version.
+    readOnly: true
+  activationStatus:
+    type: string
+    description: |
+      The current activation status of this configuration version, either `ACTIVE`, `INACTIVE`, or `PENDING`.
+    readOnly: true
+    enum:
+    - ACTIVE
+    - INACTIVE
+    - PENDING
+    x-enum-descriptions:
+      ACTIVE: Configuration version is currently active.
+      INACTIVE: Configuration version is not active.
+      PENDING: Configuration version activation is pending.
+  canEdit:
+    type: boolean
+    description: |
+      Indicates whether this version can be edited. Only inactive versions can be modified. Once a version is activated in any environment, it becomes read-only.
+    readOnly: true
+  logInput:
+    type: boolean
+    description: |
+      Whether input logging is enabled. When true, all input prompts to the LLM are logged.
+    default: true
+  logOutput:
+    type: boolean
+    description: |
+      Whether output logging is enabled. When `true`, all LLM responses are logged.
+    default: true
+  maskInputPiiFields:
+    type: boolean
+    description: |
+      Whether PII fields are masked in input logs. When `true`, detected PII in prompts is redacted before logging.
+    default: true
+  maskOutputPiiFields:
+    type: boolean
+    description: |
+      Whether PII fields are masked in output logs. When `true`, detected PII in responses is redacted before logging.
+    default: true
+  defaultDenyResponse:
+    description: |
+      The default response returned when a request is denied by any rule configured with a DENY action. Ignored for API type configurations.
+    allOf:
+    - $ref: ./deny-response.yaml
+  defaultModifiedResponse:
+    description: |
+      The default modified response definition. Required before any rule or PII entity can use the MODIFY action. Ignored for API type configurations.
+    allOf:
+    - $ref: ./modify-action-response.yaml
+  rules:
+    type: array
+    description: |
+      The security rules configured for this version. May include sensitivity, size, PII, or off-topic rules depending on the rule type. See the List rule types operation for available rules.
+    items:
+      $ref: ./fai-rule.yaml
+  createdBy:
+    type: string
+    description: |
+      The username of the user who created this configuration version.
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+    description: |
+      The time when this configuration version was created.
+    readOnly: true
+  modifiedBy:
+    type: string
+    description: |
+      The username of the user who last modified this configuration version.
+    readOnly: true
+  modifiedDate:
+    type: string
+    format: date-time
+    description: |
+      The date and time when this configuration version was last modified, in ISO 8601 format.
+    readOnly: true

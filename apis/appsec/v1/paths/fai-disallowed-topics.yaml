@@ -1,0 +1,23 @@
+get:
+  operationId: get-disallowed-topics
+  x-akamai:
+    path-info: /disallowed-topics
+  summary: List disallowed topics
+  tags:
+  - Reference data
+  description: |
+    List all available disallowed topics for off-topic content rules.
+  responses:
+    200:
+      description: |
+        Successful return of disallowed topics.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-disallowed-topics-200.json
+          schema:
+            $ref: ../schemas/disallowed-topics.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml

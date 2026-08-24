@@ -1,0 +1,15 @@
+description: |
+  [Forbidden](ref:403).
+content:
+  application/problem+json:
+    examples:
+      no-permission-to-write:
+        summary: You don't have permission to write to this resource.
+        value:
+          $ref: ../examples/403.json
+      legacy-evasive-path-match-detected:
+        summary: You can't enable URL Evasion Defense unless Evasive Path Match disabled.
+        value:
+          $ref: ../examples/403-evasive-path-match-detected.json
+    schema:
+      $ref: ../schemas/problem-details.yaml

@@ -1,0 +1,23 @@
+get:
+  operationId: get-configuration-limits
+  x-akamai:
+    path-info: /limits
+  summary: Get numeric constraints for FAI configurations
+  tags:
+  - Reference data
+  description: |
+    Retrieve the numeric constraints enforced on FAI configurations and modify action responses.
+  responses:
+    200:
+      description: |
+        Successful return of configuration limits.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-limits-200.json
+          schema:
+            $ref: ../schemas/fai-config-limits.yaml
+    403:
+      $ref: ../errors/403.yaml
+    500:
+      $ref: ../errors/500.yaml

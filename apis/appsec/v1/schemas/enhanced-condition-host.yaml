@@ -1,0 +1,40 @@
+type: object
+description: |
+  Collect data needed for condition matches on hostnames.
+title: HostCondition
+additionalProperties: false
+required:
+- className
+- host
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `HostCondition`.
+    enum:
+    - HostCondition
+  positiveMatch:
+    type: boolean
+    default: true
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  host:
+    type: array
+    description: |
+      Specify hostnames to match against. Supports `*` and `?` wildcards.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  valueWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards.
+    x-akamai:
+      status: DEPRECATED
+    deprecated: true

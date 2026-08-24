@@ -1,0 +1,88 @@
+type: object
+description: |
+  Represents a security rule within a Firewall for AI configuration version. Rules define detection logic and enforcement actions for threats such as prompt injection, PII exposure, toxic content, secrets, size limits, and off-topic content. The set of applicable properties depends on the rule identified by `ruleId`. Sensitivity-based rules use `sensitivity`, size rules use `maxSize`, PII rules use `maskPii`/`piiEntities`/`customPiiEntities`, and off-topic rules use `sensitivity`/`topics`.
+additionalProperties: false
+required:
+- ruleId
+- ruleName
+- action
+properties:
+  ruleId:
+    type: string
+    description: |
+      Rule identifier. 1-255 characters. See the List rule types operation for available values, such as `LLM-INJECT-PROMPT`.
+    minLength: 1
+    maxLength: 255
+  ruleName:
+    type: string
+    description: |
+      Display name of the rule. 1-255 characters.
+    minLength: 1
+    maxLength: 255
+  enabled:
+    type: boolean
+    description: |
+      Whether the rule is enabled in the configuration. Default `false`.
+    default: false
+  action:
+    type: string
+    description: |
+      Action to perform when the rule triggers. One of `ALERT`, `DENY`, or `MODIFY`.
+    enum:
+    - ALERT
+    - DENY
+    - MODIFY
+    x-enum-descriptions:
+      ALERT: Log the detection but allow the request.
+      DENY: Block the request and return an error.
+      MODIFY: Modify the request or response to remove the threat.
+  sensitivity:
+    type: string
+    description: |
+      Detection sensitivity for sensitivity-based rules (prompt injection, toxicity) and off-topic rules. One of `HIGH`, `MEDIUM`, or `LOW`. Default `MEDIUM` for sensitivity rules.
+    enum:
+    - HIGH
+    - MEDIUM
+    - LOW
+    x-enum-descriptions:
+      HIGH: Most aggressive detection, lowest tolerance for threats.
+      MEDIUM: Balances detection accuracy against false positives.
+      LOW: High-confidence detections only.
+  maxSize:
+    type: integer
+    description: |
+      Maximum allowed size for size rules. Minimum value 1.
+    minimum: 1
+  maskPii:
+    type: boolean
+    description: |
+      For PII rules, whether to mask all detected PII. Default `false`. Currently applied only for the response payload.
+    default: false
+  piiEntities:
+    type: array
+    description: |
+      For PII rules, the list of pre-defined PII entities enabled for this rule.
+    items:
+      $ref: ./pii-entity.yaml
+  customPiiEntities:
+    type: array
+    description: |
+      For PII rules, the list of custom PII entities enabled for this rule.
+    items:
+      $ref: ./custom-pii-entity.yaml
+  topics:
+    type: array
+    description: |
+      For off-topic rules, the list of disallowed topic IDs. At least one entry required. Each entry must be a valid topic ID from the List disallowed topics operation.
+    items:
+      type: string
+  denyResponse:
+    description: |
+      Configured response for this rule when its action is DENY. Overrides the version-level defaultDenyResponse.
+    allOf:
+    - $ref: ./deny-response.yaml
+  modifiedResponse:
+    description: |
+      Custom modified response for this rule when its action is MODIFY. Overrides the version-level defaultModifiedResponse.
+    allOf:
+    - $ref: ./modify-action-response.yaml

@@ -1,0 +1,6 @@
+description: |
+  Your remaining monthly quota.
+required: true
+schema:
+  type: integer
+  example: 20100

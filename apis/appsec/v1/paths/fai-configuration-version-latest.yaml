@@ -1,0 +1,27 @@
+get:
+  operationId: get-fai-configuration-version-latest
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/latest
+  summary: Get the latest configuration version
+  tags:
+  - Configuration versions
+  description: |
+    Retrieve details of the last created configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of latest configuration version.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-fai-configuration-version-200.json
+          schema:
+            $ref: ../schemas/fai-configuration-version.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

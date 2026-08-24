@@ -1,0 +1,15 @@
+type: object
+description: |
+  The enrollment and enablement status of AI rules for the security policy.
+additionalProperties: false
+required:
+- aiRuleStatus
+properties:
+  aiRuleStatus:
+    type: string
+    description: |
+      Whether AI rules are active for the policy, either `ENABLED`, `DISABLED`, or `NOT_ENROLLED`.
+    enum:
+      - ENABLED
+      - DISABLED
+      - NOT_ENROLLED

@@ -1,0 +1,34 @@
+type: object
+description: |
+  Represents a custom personally identifiable information (PII) type definition for detecting organization-specific sensitive data patterns. Custom PII types extend beyond the platform's predefined PII entity types,  such as credit cards, SSNs, and email addresses, to enable detection of proprietary or domain-specific sensitive identifiers such as employee IDs, internal account numbers, custom reference codes, or industry-specific data formats. Each custom PII type is defined using one or more regular expression patterns that match the sensitive data format. Once created, custom PII types can be referenced in PII detection rules via their customPiiId to automatically detect and optionally mask these patterns in LLM requests and responses.
+additionalProperties: false
+required:
+- customPiiId
+- customPiiName
+- patterns
+properties:
+  customPiiId:
+    type: string
+    description: |
+      Uniquely identifies this custom PII type within the configuration version. This identifier is used to reference the custom PII type in PII detection rules, specifically in their `customPiiEntities` array. The ID must be unique across all custom PII types in the configuration version and should follow a clear naming convention for easy identification.
+    minLength: 1
+    maxLength: 100
+    pattern: '^[a-zA-Z0-9_-]+$'
+  customPiiName:
+    type: string
+    description: |
+      The human-readable name for this custom PII type. This descriptive name helps administrators understand what type of sensitive data this definition detects. It appears in configuration management interfaces and audit logs for clarity and governance purposes.
+    minLength: 1
+    maxLength: 255
+  patterns:
+    type: array
+    description: |
+      List of regular expression patterns that define how to detect this custom PII type in content. Each pattern is a regular expression string that matches the specific format of the sensitive data. Multiple patterns can be provided to account for format variations, such as with or without delimiters, and different prefix conventions. Patterns evaluate using standard regular expression syntax and should be carefully tested to balance detection accuracy with false positive rates. When multiple patterns are provided, content matching any pattern is considered a match for this custom PII type.
+    minItems: 1
+    items:
+      type: string
+      description: |
+        A regular expression pattern to detect the custom PII type. The pattern uses standard regular expression syntax and can be optimized for the specific data format being detected. Consider edge cases, format variations, and potential false positives when designing patterns. Example patterns: `EMP-[0-9]{6}` for employee IDs like `EMP-123456`, or `\b[A-Z]{3}-[0-9]{4}-[A-Z]{2}\b` for custom reference codes.
+      minLength: 1
+      maxLength: 500
+

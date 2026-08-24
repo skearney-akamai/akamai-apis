@@ -1,0 +1,27 @@
+title: Cookie, query string, or request header
+type: object
+description: |
+  Identify a client by a named cookie, query parameter, or request header value. Use `cookie` to track by a cookie value, `query-string` to track by a named query parameter, or `request-header` to track by a named request header.
+additionalProperties: false
+required:
+- identifier
+- name
+properties:
+  identifier:
+    type: string
+    description: |
+      Specify the client identifier type. Either `cookie`, `query-string`, or `request-header`.
+    enum:
+    - cookie
+    - query-string
+    - request-header
+  order:
+    type: integer
+    description: |
+      Specify the position of this identifier in the fallback chain. The system attempts lower values first.
+  name:
+    type: string
+    description: |
+      Specify the name of the cookie, query parameter, or request header to inspect.
+  validation:
+    $ref: quota-policy-identifier-validation.yaml

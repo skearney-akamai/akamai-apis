@@ -1,0 +1,53 @@
+type: object
+description: |
+  Collect data needed for condition matches on response headers.
+title: ResponseHeaderCondition
+additionalProperties: false
+required:
+- className
+- name
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `ResponseHeaderCondition`.
+    enum:
+    - ResponseHeaderCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify response header values to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  name:
+    type: array
+    description: |
+      Specify names of the response headers to inspect.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  nameWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards when matching header names.
+  valueCase:
+    type: boolean
+    description: |
+      Specify whether to consider the case sensitivity of the provided header values.
+  valueWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards when matching header values.

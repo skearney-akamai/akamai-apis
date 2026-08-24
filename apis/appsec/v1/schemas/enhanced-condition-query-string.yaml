@@ -1,0 +1,52 @@
+type: object
+description: |
+  Collect data needed for condition matches on query string parameters.
+title: QueryStringCondition
+additionalProperties: false
+required:
+- className
+- name
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `QueryStringCondition`.
+    enum:
+    - QueryStringCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify query string parameter values to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  name:
+    type: string
+    description: |
+      Specify the name of the query string parameter to inspect.
+  nameCase:
+    type: boolean
+    description: |
+      Specify whether to consider the case sensitivity of the parameter name.
+  nameWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards when matching the parameter name.
+  valueCase:
+    type: boolean
+    description: |
+      Specify whether to consider the case sensitivity of the parameter values.
+  valueWildcard:
+    type: boolean
+    description: |
+      Specify whether to interpret `*` and `?` as wildcards when matching parameter values.

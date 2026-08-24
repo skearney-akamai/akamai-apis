@@ -1,0 +1,88 @@
+definitions:
+  Action:
+    type: string
+    description: |
+      The URL evasion mitigation rule action, either `alert`, `deny`, or `none`.
+    enum:
+      - none
+      - alert
+      - deny
+  RuleCommon:
+    type: object
+    required:
+      - ruleId
+    properties:
+      ruleId:
+        type: integer
+        description: Uniquely identifies the URL evasion mitigation rule.
+      action:
+        $ref: '#/definitions/Action'
+      conditions:
+        type: array
+        description: |
+          The list of match conditions.
+        items:
+          $ref: condition.yaml
+      conditionOperator:
+        type: string
+        description: |
+          Sets how the rule evaluates conditions. Use `OR` to match any condition, or `AND` to match on all conditions. When the specified conditions are met, the rule does not trigger.
+        enum:
+          - OR
+          - AND
+  RuleRequest:
+    description: |
+      Updates the URL evasion mitigation rule settings for a specific rule.
+    allOf:
+      - $ref: '#/definitions/RuleCommon'
+      - type: object
+        required:
+          - action
+        properties:
+          action:
+            $ref: '#/definitions/Action'
+  RuleResponse:
+    description: |
+      Describes the current URL evasion mitigation rule settings for a specific rule.
+    allOf:
+      - $ref: '#/definitions/RuleCommon'
+      - type: object
+        properties:
+          defaultAction:
+            $ref: '#/definitions/Action'
+          name:
+            type: string
+            description: |
+              The URL evasion mitigation rule name.
+          description:
+            type: string
+            description: |
+              The URL evasion mitigation rule description.
+  UrlEvasionDefenseCommon:
+    type: object
+    description: |
+      The URL evasion defense settings.
+    required:
+      - status
+      - lockVersion
+    properties:
+      status:
+        type: string
+        description: |
+          Sets whether the feature is `enabled` or `disabled`.
+        enum:
+          - enabled
+          - disabled
+      lockVersion:
+        type: number
+        description: |
+          The version number to check during the update.
+      bypassLists:
+        type: array
+        description: |
+          Client list identifiers for trusted clients who are exempt from URL evasion mitigation rules.
+        uniqueItems: true
+        items:
+          type: string
+          description: |
+            The identifier of the IP, GEO, or ASN client list.

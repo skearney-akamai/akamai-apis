@@ -1,0 +1,9 @@
+name: quotaPolicyId
+in: path
+description: |
+  Specify a unique identifier for each quota policy.
+required: true
+schema:
+  type: integer
+  format: int64
+  example: 42

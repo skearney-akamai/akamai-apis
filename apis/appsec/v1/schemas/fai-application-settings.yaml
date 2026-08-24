@@ -1,0 +1,39 @@
+type: object
+description: |
+  Contains input or output settings for an FAI application.
+additionalProperties: false
+required:
+- enabled
+properties:
+  enabled:
+    type: boolean
+    description: |
+      Whether the settings are enabled.
+  jsonPath:
+    type: string
+    description: |
+      A JSONPath expression to extract data from request or response bodies.
+    minLength: 1
+    maxLength: 1023
+  maxLength:
+    type: integer
+    description: |
+      The maximum length of extracted data.
+    minimum: 1
+  encoding:
+    type: string
+    description: |
+      The encoding type for extracted data. Either `URL` or `NONE`.
+    enum:
+    - URL
+    - NONE
+  finalJsonPath:
+    type: string
+    description: |
+      A final JSONPath expression for additional data processing.
+    maxLength: 1023
+  finalJsonPathValue:
+    type: string
+    description: |
+      The expected value at the final JSONPath location.
+    maxLength: 256

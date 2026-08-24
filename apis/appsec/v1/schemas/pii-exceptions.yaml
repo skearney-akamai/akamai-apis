@@ -1,0 +1,17 @@
+type: object
+description: |
+  Defines patterns and values to exclude from PII detection for a specific PII entity.
+additionalProperties: false
+properties:
+  patterns:
+    type: array
+    description: |
+      List of regular expression patterns. Values matching any pattern are excluded from detection.
+    items:
+      type: string
+  exactMatches:
+    type: array
+    description: |
+      List of exact values to exclude from detection.
+    items:
+      type: string

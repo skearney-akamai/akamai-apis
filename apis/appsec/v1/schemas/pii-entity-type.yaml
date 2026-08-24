@@ -1,0 +1,33 @@
+type: object
+description: |
+  Represents a pre-defined personally identifiable information (PII) entity type that can be detected in LLM requests and responses. PII entity types are built-in sensitive data patterns provided by the platform, such as credit card numbers, social security numbers, email addresses, phone numbers, IP addresses, and other common PII categories. These pre-defined types can be referenced in PII detection rules to automatically identify and optionally mask sensitive information to ensure compliance with data privacy regulations.
+additionalProperties: false
+required:
+- piiId
+- piiName
+properties:
+  piiId:
+    type: string
+    description: |
+      Unique identifier for the pre-defined PII entity type. This identifier is used to reference the PII type in PII detection rules, specifically in their `piiEntities` array. Common examples include `CREDIT_CARD`, `SSN`, `EMAIL`, `PHONE_NUMBER`, `IP_ADDRESS`, and other standard PII categories.
+    readOnly: true
+  piiName:
+    type: string
+    description: |
+      The human-readable name for this PII entity type. This descriptive name helps administrators understand what type of sensitive data this entity represents. It appears in configuration management interfaces and documentation for clarity.
+    readOnly: true
+  piiCategory:
+    type: string
+    description: |
+      The category grouping this PII entity type belongs to. One of `BANK_RELATED`, `PERSONAL_DATA`, `HEALTH_GOVERNMENT`, or `OTHER`.
+    enum:
+    - BANK_RELATED
+    - PERSONAL_DATA
+    - HEALTH_GOVERNMENT
+    - OTHER
+    x-enum-descriptions:
+      BANK_RELATED: Financial and banking identifiers, such as credit card or bank account numbers.
+      PERSONAL_DATA: Personal contact and identity data, such as names, emails, and phone numbers.
+      HEALTH_GOVERNMENT: Health and government-issued identifiers, such as medical licenses or passport numbers.
+      OTHER: PII types that do not fall into the other categories.
+    readOnly: true

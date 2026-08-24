@@ -1,0 +1,13 @@
+type: object
+description: |
+  List quota policies.
+additionalProperties: false
+required:
+- quotaPolicies
+properties:
+  quotaPolicies:
+    type: array
+    description: |
+      List quota policies in this configuration version.
+    items:
+      $ref: quota-policy.yaml

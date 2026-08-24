@@ -1,0 +1,8 @@
+name: faiApplicationId
+in: path
+description: |
+  A unique identifier for each FAI application.
+required: true
+schema:
+  type: integer
+  example: 12345

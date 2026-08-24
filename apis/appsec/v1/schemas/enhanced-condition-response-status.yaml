@@ -1,0 +1,32 @@
+type: object
+description: |
+  Collect data needed for condition matches on HTTP response status codes.
+title: ResponseStatusCondition
+additionalProperties: false
+required:
+- className
+- value
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `ResponseStatusCondition`.
+    enum:
+    - ResponseStatusCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify HTTP response status codes to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1

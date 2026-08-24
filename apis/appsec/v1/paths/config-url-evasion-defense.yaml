@@ -1,0 +1,72 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/advanced-settings/url-evasion-defense
+parameters:
+- $ref: '../parameters/config-id-path.yaml'
+- $ref: '../parameters/version-number-path.yaml'
+get:
+  operationId: get-url-evasion-defense
+  summary: Get URL evasion defense settings
+  tags:
+  - URL evasion defense
+  description: |
+    Lists the URL evasion defense settings for a configuration. URL evasion defense is off by default.
+  x-akamai:
+    labels:
+    - Web Application Protector
+    - Kona Site Defender
+  responses:
+    200:
+      description: |
+        Successfully retrieved the URL evasion defense settings.
+      content:
+        application/json:
+          example:
+            $ref: '../examples/url-evasion-defense-get-200.json'
+          schema:
+            $ref: '../schemas/url-evasion-defense-response.yaml'
+    400:
+      $ref: '../errors/400-client-read-errors.yaml'
+    404:
+      $ref: '../errors/404-client-read-errors.yaml'
+    500:
+      $ref: '../errors/500-server-errors.yaml'
+put:
+  operationId: put-url-evasion-defense
+  summary: Modify URL evasion defense settings
+  tags:
+  - URL evasion defense
+  description: |
+    This operation enables, disables, or updates URL evasion defense settings for a configuration.
+  x-akamai:
+    labels:
+    - Web Application Protector
+    - Kona Site Defender
+  parameters:
+  - $ref: '../parameters/disable-legacy-evasive-path-match-query.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: '../examples/url-evasion-defense-put.json'
+        schema:
+          $ref: '../schemas/url-evasion-defense-request.yaml'
+  responses:
+    200:
+      description: |
+        Successfully updated the URL evasion defense settings:.
+      content:
+        application/json:
+          example:
+            $ref: '../examples/url-evasion-defense-get-200.json'
+          schema:
+            $ref: '../schemas/url-evasion-defense-response.yaml'
+    400:
+      $ref: '../errors/400-client-read-errors.yaml'
+    403:
+      $ref: '../errors/403-client-write-errors.yaml'
+    404:
+      $ref: '../errors/404-client-read-errors.yaml'
+    500:
+      $ref: '../errors/500-server-errors.yaml'

@@ -1,0 +1,13 @@
+name: status
+in: query
+required: false
+schema:
+  type: string
+  enum:
+    - ACTIVE
+    - INACTIVE
+    - PENDING
+    - FAILED
+    - DEACTIVATED
+description: Filter results by activation or configuration status.
+example: "ACTIVE"

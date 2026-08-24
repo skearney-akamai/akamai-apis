@@ -1,0 +1,57 @@
+type: object
+description: |
+  Defines a custom HTTP response returned when a rule with a MODIFY action triggers.
+additionalProperties: false
+required:
+- statusCode
+- contentType
+- body
+properties:
+  statusCode:
+    type: integer
+    description: |
+      HTTP status code. One of `200`, `203`, `400`, `403`, `413`, or `422`.
+    enum:
+    - 200
+    - 203
+    - 400
+    - 403
+    - 413
+    - 422
+  contentType:
+    type: string
+    description: |
+      HTTP content type. One of `application/json`, `application/problem+json`, `application/xml`, `application/problem+xml`, or `text/plain;charset=utf-8`.
+    enum:
+    - application/json
+    - application/problem+json
+    - application/xml
+    - application/problem+xml
+    - text/plain;charset=utf-8
+  body:
+    type: string
+    description: |
+      Response body. Maximum 4096 characters. Must be valid according to the specified contentType (JSON, XML, or plain text).
+    maxLength: 4096
+  headers:
+    type: object
+    description: |
+      Map of additional response header name/value pairs. Maximum 5 pairs. Maximum header name size 80 characters, maximum header value size 512 characters. Header names are case-insensitive and cannot be repeated.
+    additionalProperties:
+      type: string
+      description: |
+        The value of the additional response header.
+  retainedHeaders:
+    type: array
+    description: |
+      List of original response header names to preserve. Maximum 5. Header names must not overlap with names in headers. Header names are case-insensitive and cannot be repeated.
+    maxItems: 5
+    items:
+      type: string
+  retainedCookies:
+    type: array
+    description: |
+      List of original cookie names to preserve. Maximum 5. Maximum cookie name size 80 characters.
+    maxItems: 5
+    items:
+      type: string

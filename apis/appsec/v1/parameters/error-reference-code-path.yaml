@@ -1,0 +1,8 @@
+name: errorReferenceCode
+in: path
+description: |
+  A unique error reference code that identifies a specific security event. End users encounter this code when their request is blocked, and you use it to look up the corresponding security event diagnostics.
+required: true
+schema:
+  type: string
+  example: 18.713f12c6.1782371012.6acdf833

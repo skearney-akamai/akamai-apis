@@ -1,0 +1,72 @@
+x-akamai:
+  # These are no-op, & clarify what endpoint this file's methods apply to
+  path-info: /configs/{configId}/versions/{versionNumber}/quota-policies
+parameters:
+- $ref: ../parameters/config-id-path.yaml
+- $ref: ../parameters/version-number-path.yaml
+get:
+  operationId: get-quota-policies
+  summary: List quota policies
+  tags:
+  - "Shared resources: Quota policies"
+  description: |
+    Return all quota policies for a specific configuration version.
+  x-akamai:
+    labels:
+    - All products
+  responses:
+    200:
+      description: |
+        Successfully returned quota policies.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policies-200.json
+          schema:
+            $ref: ../schemas/quota-policies.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version wasn't found.
+      $ref: ../errors/404.yaml
+post:
+  operationId: post-quota-policy
+  summary: Create a quota policy
+  tags:
+  - "Shared resources: Quota policies"
+  description: |
+    Create a new quota policy for a specific configuration version. Set `matchType` to `path` to apply the quota to website path traffic or `api` to apply it to API endpoint traffic. For `api` type policies, include `apiSelectors` to specify which API endpoints and resources to target.
+  x-akamai:
+    labels:
+    - All products
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/quota-policy-post.json
+        schema:
+          $ref: ../schemas/quota-policy.yaml
+  responses:
+    201:
+      description: |
+        Successfully created a quota policy.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/quota-policy-200.json
+          schema:
+            $ref: ../schemas/quota-policy.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      description: |
+        [Forbidden](ref:403). You don't have access to quota policies in this security configuration.
+      $ref: ../errors/403.yaml
+    404:
+      description: |
+        [Not found](ref:404). Security configuration version wasn't found.
+      $ref: ../errors/404.yaml

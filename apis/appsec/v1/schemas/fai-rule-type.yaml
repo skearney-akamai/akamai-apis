@@ -1,0 +1,49 @@
+type: object
+description: |
+  Describes an available rule type in the Firewall for AI system. Rule types define the categories of security detections available to protect LLM applications, including prompt injection, PII detection, toxic content, secrets detection, and other threats from the OWASP Top 10 for LLM Applications. This is read-only reference data available from the [List FAI rule types](ref:get-rule-types) operation.
+additionalProperties: false
+required:
+- ruleId
+properties:
+  ruleId:
+    type: string
+    description: |
+      Unique identifier for the rule type. This is the value used when configuring rules in a configuration version's `ruleType` field. Examples include identifiers for prompt injection detection, PII detection, toxic content analysis, secrets detection, code detection, language validation, size limits, and off-topic content moderation.
+  ruleName:
+    type: string
+    description: |
+      Human-readable display name of the rule type.
+    readOnly: true
+  description:
+    type: string
+    description: |
+      Detailed explanation of what this rule type detects and how it protects LLM applications. It describes the security threat or policy enforcement mechanism that this rule type addresses.
+  ruleCategories:
+    type: array
+    description: |
+      Classification categories for this rule. A rule may belong to multiple categories.
+    readOnly: true
+    items:
+      $ref: ./rule-category.yaml
+  inspectionTarget:
+    type: string
+    description: |
+      Specifies whether this rule type analyzes LLM input (user prompts), output (LLM responses), or both directions of traffic. `INPUT` rules inspect requests before they reach the LLM, `OUTPUT` rules inspect responses before they reach the user, and `BOTH` indicates the rule can be applied to either or both directions.
+    enum:
+    - INPUT
+    - OUTPUT
+    x-enum-descriptions:
+      INPUT: The rule inspects LLM input (user prompts).
+      OUTPUT: The rule inspects LLM output (model responses).
+    readOnly: true
+  version:
+    type: integer
+    description: |
+      Version number of this rule type definition. The version increments when the rule detection logic, configuration options, or behavior changes. This allows you to track rule type evolution and helps ensure compatibility between configurations and the underlying detection engines.
+    minimum: 1
+  ruleConfigFields:
+    type: array
+    description: |
+      Configuration fields available for this rule type. It defines the fields that can be set when configuring a rule of this type in a configuration version. Each field describes a configurable aspect of the rule's behavior, such as detection thresholds, entity types to detect, or size limits. The structure and available fields vary by rule type. Omitted when the rule has no configurable fields.
+    items:
+      $ref: ./rule-configurable-field.yaml

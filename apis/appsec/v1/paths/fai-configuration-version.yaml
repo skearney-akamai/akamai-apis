@@ -1,0 +1,68 @@
+get:
+  operationId: get-fai-configuration-version
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}
+  summary: Get a configuration version
+  tags:
+  - Configuration versions
+  description: |
+    Retrieve details of a specific version of an FAI configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of configuration version.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-fai-configuration-version-200.json
+          schema:
+            $ref: ../schemas/fai-configuration-version.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+put:
+  operationId: put-fai-configuration-version
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}
+  summary: Update a configuration version
+  tags:
+  - Configuration versions
+  description: |
+    Modify the settings and rules of a configuration version. Only versions that are not currently active can be edited, where `canEdit`=`true`. Update is used then to set the version values.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/put-fai-configuration-version-request.json
+        schema:
+          $ref: ../schemas/fai-configuration-version.yaml
+  responses:
+    200:
+      description: |
+        Configuration version updated successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/put-fai-configuration-version-200.json
+          schema:
+            $ref: ../schemas/fai-configuration-version.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

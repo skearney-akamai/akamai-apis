@@ -1,0 +1,51 @@
+type: object
+description: |
+  Represents an application (API type only).
+additionalProperties: false
+properties:
+  userApplicationId:
+    type: string
+    description: |
+      System-generated unique identifier. Pass this value to the Detection API to associate detections with this application.
+    readOnly: true
+  applicationName:
+    type: string
+    description: |
+      Display name of the application. Must be unique within the configuration.
+    minLength: 1
+    maxLength: 255
+  description:
+    type: string
+    description: |
+      Description of the application.
+    maxLength: 255
+  tags:
+    type: array
+    description: |
+      Tags for categorization.
+    items:
+      type: string
+  createdBy:
+    type: string
+    description: |
+      User who created the application.
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+    description: |
+      ISO 8601 timestamp when the application was created.
+    readOnly: true
+  modifiedBy:
+    type: string
+    description: |
+      User who last updated the application.
+    readOnly: true
+  modifiedDate:
+    type: string
+    format: date-time
+    description: |
+      The time when the application was last updated.
+    readOnly: true
+required:
+- applicationName

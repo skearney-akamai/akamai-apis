@@ -1,0 +1,36 @@
+get:
+  operationId: get-activations
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/activations
+  summary: List activations
+  tags:
+  - Activations
+  description: |
+    Retrieve the activation history for a configuration. Results are ordered by `createdDate` descending, most recent first.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/start-query.yaml
+  - $ref: ../parameters/end-query.yaml
+  - $ref: ../parameters/created-by-query.yaml
+  - $ref: ../parameters/version-query.yaml
+  - $ref: ../parameters/status-query.yaml
+  - $ref: ../parameters/page-query.yaml
+  - $ref: ../parameters/page-size-query.yaml
+  responses:
+    200:
+      description: |
+        Successful return of activation history.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-activations-200.json
+          schema:
+            $ref: ../schemas/fai-activations.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

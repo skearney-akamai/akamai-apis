@@ -1,0 +1,32 @@
+post:
+  operationId: post-revoke-access-key
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/keys/{keyId}/revoke
+  summary: Revoke an access key
+  tags:
+  - Access keys
+  description: |
+    Permanently revoke an active access key. A revoked key immediately stops working and can no longer be used to access the Detection API. This action is irreversible.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/key-id-path.yaml
+  responses:
+    200:
+      description: |
+        Access key revoked successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-revoke-access-key-200.json
+          schema:
+            $ref: ../schemas/fai-access-key.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

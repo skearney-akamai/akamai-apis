@@ -1,0 +1,39 @@
+type: object
+description: |
+  Represents a pre-defined PII entity type configured within a PII detection rule.
+additionalProperties: false
+required:
+- piiId
+properties:
+  piiId:
+    type: string
+    description: |
+      PII type identifier, such as `CREDIT_CARD_NUMBER`. See the List PII types operation for available values.
+  piiName:
+    type: string
+    description: |
+      Display name of the PII type.
+    readOnly: true
+  action:
+    type: string
+    description: |
+      Action override for this entity. One of `ALERT`, `DENY`, or `MODIFY`. If not set, inherits the parent rule's action. Default `ALERT`.
+    enum:
+    - ALERT
+    - DENY
+    - MODIFY
+    x-enum-descriptions:
+      ALERT: Log the detection but allow the request.
+      DENY: Block the request and return an error.
+      MODIFY: Modify the request or response to remove the threat.
+    default: ALERT
+  modifiedResponse:
+    description: |
+      Custom modified response for this entity when its action is MODIFY.
+    allOf:
+    - $ref: ./modify-action-response.yaml
+  piiExceptions:
+    description: |
+      Patterns and values excluded from detection for this specific PII entity.
+    allOf:
+    - $ref: ./pii-exceptions.yaml

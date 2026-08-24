@@ -1,0 +1,30 @@
+type: object
+description: |
+  The common response object for the API's error cases.
+additionalProperties: true
+required:
+- type
+- title
+- status
+- detail
+properties:
+  type:
+    type: string
+    description: |
+      The non-navigable URI for each error type.
+  title:
+    type: string
+    description: |
+      The name of the error.
+    minLength: 1
+  status:
+    type: integer
+    description: |
+      The HTTP status code.
+    minimum: 100
+    maximum: 600
+  detail:
+    type: string
+    description: |
+      The detailed error message.
+    minLength: 1

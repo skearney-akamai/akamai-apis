@@ -1,0 +1,28 @@
+get:
+  operationId: get-fai-activation
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/activations/{activationId}
+  summary: Get an activation
+  tags:
+  - Activations
+  description: |
+    Retrieve details of a specific activation.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/activation-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of activation details.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-activation-200.json
+          schema:
+            $ref: ../schemas/fai-activation.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

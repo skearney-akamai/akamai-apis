@@ -1,0 +1,9 @@
+type: object
+description: |
+  Map each security policy ID to its quota policy actions.
+additionalProperties:
+  type: array
+  description: |
+    List quota policy actions assigned to this security policy.
+  items:
+    $ref: quota-policy-action.yaml

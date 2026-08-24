@@ -1,0 +1,36 @@
+type: object
+description: |
+  Review details about a quota policy action assigned to a security policy.
+additionalProperties: false
+properties:
+  name:
+    type: string
+    description: |
+      Review the name of the quota policy.
+  policyId:
+    type: integer
+    format: int64
+    description: |
+      Uniquely identify the quota policy this action applies to.
+  action:
+    type: string
+    description: |
+      Specify the action to take when requests exceed the quota threshold. Either `alert` to log the event or `none` to disable enforcement for this security policy.
+    enum:
+    - alert
+    - none
+  quota:
+    type: integer
+    description: |
+      Specify the maximum number of requests allowed within the interval. When set, this overrides the quota policy's default value for this security policy.
+    minimum: 1
+  interval:
+    type: string
+    description: |
+      Specify the time interval over which to count requests. When set, this overrides the quota policy's default interval for this security policy. Either `ONE_HOUR`, `THREE_HOURS`, `SIX_HOURS`, `TWELVE_HOURS`, or `TWENTY_FOUR_HOURS`.
+    enum:
+    - ONE_HOUR
+    - THREE_HOURS
+    - SIX_HOURS
+    - TWELVE_HOURS
+    - TWENTY_FOUR_HOURS

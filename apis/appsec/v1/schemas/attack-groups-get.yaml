@@ -1,0 +1,6 @@
+type: array
+minItems: 0
+description: |
+  The set of attack groups in the catalog.
+items:
+  $ref: attack-groups-lookup-get.yaml

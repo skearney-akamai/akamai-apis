@@ -1,0 +1,9 @@
+type: object
+description: |
+  The action for an AI rule.
+additionalProperties: false
+required:
+- action
+properties:
+  action:
+    $ref: ai-rule-action.yaml

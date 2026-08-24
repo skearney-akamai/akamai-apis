@@ -1,0 +1,20 @@
+title: API key, IP/user agent, or TLS fingerprint
+type: object
+description: |
+  Identify a client using an API key, combined IP address and user agent, or TLS fingerprint. Use `api-key` to track by API key, `ip-useragent` to track by the combined IP and user agent, or `tls-fingerprint` to track by TLS fingerprint.
+additionalProperties: false
+required:
+- identifier
+properties:
+  identifier:
+    type: string
+    description: |
+      Specify the client identifier type. Either `api-key`, `ip-useragent`, or `tls-fingerprint`.
+    enum:
+    - api-key
+    - ip-useragent
+    - tls-fingerprint
+  order:
+    type: integer
+    description: |
+      Specify the position of this identifier in the fallback chain. Lower values are attempted first.

@@ -1,0 +1,18 @@
+type: object
+description: |
+  Defines a custom HTTP response returned when a rule with a DENY action triggers.
+additionalProperties: false
+required:
+- statusCode
+properties:
+  statusCode:
+    type: integer
+    description: |
+      HTTP status code returned when the request is denied.
+    minimum: 400
+    maximum: 599
+  message:
+    type: string
+    description: |
+      Response message. Maximum 1024 characters.
+    maxLength: 1024

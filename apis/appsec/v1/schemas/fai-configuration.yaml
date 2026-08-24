@@ -1,0 +1,77 @@
+type: object
+description: |
+  Represents a Firewall for AI configuration that protects LLM applications from security threats.
+additionalProperties: false
+required:
+- faiConfigName
+- faiConfigType
+properties:
+  faiConfigId:
+    type: string
+    description: |
+      Uniquely identifies the Firewall for AI configuration.
+    readOnly: true
+  faiConfigName:
+    type: string
+    description: |
+      The name of the Firewall for AI configuration.
+    minLength: 1
+    maxLength: 255
+  description:
+    type: string
+    description: |
+      A detailed description of the Firewall for AI configuration and its purpose.
+    maxLength: 255
+  faiConfigType:
+    type: string
+    description: |
+      The type of Firewall for AI configuration. One of `EDGE` or `API`. `EDGE` type configurations are deployed on Akamai's edge network, while `API` type configurations are accessed via API endpoints.
+    enum:
+    - EDGE
+    - API
+    x-enum-descriptions:
+      EDGE: Configuration deployed on Akamai edge network.
+      API: Configuration accessed via API endpoints.
+  contractId:
+    type: string
+    description: |
+      The unique identifier for the Akamai contract associated with this configuration.
+  groupId:
+    type: string
+    description: |
+      The unique identifier for the Akamai group associated with this configuration.
+  createdBy:
+    type: string
+    description: |
+      The username of the user who created this configuration.
+    readOnly: true
+  createdDate:
+    type: string
+    format: date-time
+    description: |
+      The date and time when this configuration was created, in ISO 8601 format.
+    readOnly: true
+  modifiedBy:
+    type: string
+    description: |
+      The username of the user who last modified this configuration.
+    readOnly: true
+  modifiedDate:
+    type: string
+    format: date-time
+    description: |
+      The time when this configuration was last modified, in ISO 8601 format.
+    readOnly: true
+  latestVersion:
+    type: integer
+    description: |
+      The latest version number of this configuration.
+    minimum: 1
+    readOnly: true
+  activeVersion:
+    type: integer
+    nullable: true
+    description: |
+      The currently active version number, or null if no version is active.
+    minimum: 1
+    readOnly: true

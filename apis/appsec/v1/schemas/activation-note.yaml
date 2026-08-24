@@ -1,0 +1,10 @@
+type: object
+description: |
+  Optional note describing the reason for activation.
+additionalProperties: false
+properties:
+  note:
+    type: string
+    description: |
+      Audit note describing the reason for activation.
+    maxLength: 255

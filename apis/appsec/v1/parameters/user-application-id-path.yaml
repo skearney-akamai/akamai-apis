@@ -1,0 +1,7 @@
+name: userApplicationId
+in: path
+required: true
+schema:
+  type: string
+description: Unique identifier for the user application.
+example: "98765"

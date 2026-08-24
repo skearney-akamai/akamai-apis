@@ -1,0 +1,45 @@
+type: object
+description: |
+  Numeric constraints enforced on Firewall for AI (FAI) configurations and modify action responses. These limits help ensure system stability, prevent resource exhaustion, and maintain performance across all configurations.
+additionalProperties: false
+properties:
+  maxActiveFaiConfigs:
+    type: integer
+    description: |
+      Maximum number of active FAI configurations allowed per account. Once this limit is reached, no additional configurations can be activated until an existing one is deactivated or deleted.
+    minimum: 1
+  maxResponseBodySize:
+    type: integer
+    description: |
+      Maximum size in bytes allowed for response bodies in modify action responses. Responses exceeding this size will be truncated or rejected to prevent performance degradation.
+    minimum: 1
+  maxAdditionalHeaders:
+    type: integer
+    description: |
+      Maximum number of additional HTTP headers that can be included in modify action responses. This limit prevents excessive header bloat that could impact performance.
+    minimum: 0
+  maxHeaderNameSize:
+    type: integer
+    description: |
+      Maximum size in bytes allowed for HTTP header names in modify action responses. Header names exceeding this length will be rejected.
+    minimum: 1
+  maxHeaderValueSize:
+    type: integer
+    description: |
+      Maximum size in bytes allowed for HTTP header values in modify action responses. Header values exceeding this length will be truncated or rejected.
+    minimum: 1
+  maxretainedHeaders:
+    type: integer
+    description: |
+      Maximum number of original HTTP request headers that can be retained and forwarded in modify action responses. This limit controls memory usage and prevents excessive header propagation.
+    minimum: 0
+  maxretainedCookies:
+    type: integer
+    description: |
+      Maximum number of original cookies that can be retained and forwarded in modify action responses. This limit helps manage cookie storage and prevents cookie overflow attacks.
+    minimum: 0
+  maxCookieNameSize:
+    type: integer
+    description: |
+      Maximum size in bytes allowed for cookie names in modify action responses. Cookie names exceeding this length will be rejected.
+    minimum: 1

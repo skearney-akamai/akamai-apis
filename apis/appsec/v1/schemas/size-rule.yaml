@@ -1,0 +1,23 @@
+allOf:
+- $ref: ./rule.yaml
+- type: object
+  description: |
+    Settings for a rule that enforces input and output size limits. This rule protects against excessive token consumption and resource exhaustion attacks, and helps control costs by limiting the maximum size of prompts sent to LLMs and responses returned from them. Size limits apply to the combined token count of user messages and LLM responses.
+  additionalProperties: false
+  required:
+  - maxSize
+  properties:
+    maxSize:
+      type: integer
+      description: |
+        The maximum allowed size in tokens for input prompts or output responses. Requests exceeding this limit will trigger the configured action (`ALERT` or `DENY`). The value must be a positive integer representing the token count threshold.
+      minimum: 1
+      maximum: 1000000
+    direction:
+      type: string
+      description: |
+        Specifies whether the size limit applies to `INPUT` (user prompts to the LLM), `OUTPUT` (LLM responses back to the user), or `BOTH` directions. If not specified, the limit applies to both input and output.
+      enum:
+      - INPUT
+      - OUTPUT
+      - BOTH

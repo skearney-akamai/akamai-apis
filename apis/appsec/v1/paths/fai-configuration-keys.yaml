@@ -1,0 +1,61 @@
+get:
+  operationId: get-fai-configuration-keys
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/keys
+  summary: List access keys
+  tags:
+  - Access keys
+  description: |
+    List all access keys for an API-type FAI configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of access keys.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-access-keys-200.json
+          schema:
+            $ref: ../schemas/fai-access-keys.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+post:
+  operationId: post-fai-configuration-key
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/keys
+  summary: Create an access key
+  tags:
+  - Access keys
+  description: |
+    Create a new access key for an API-type FAI configuration.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  responses:
+    201:
+      description: |
+        Access key created successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-access-key.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-access-key-201.json
+          schema:
+            $ref: ../schemas/fai-access-key.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml

@@ -1,0 +1,21 @@
+type: object
+description: |
+  The AI rules for the security policy.
+additionalProperties: false
+required:
+- aiRuleStatus
+properties:
+  aiRuleStatus:
+    type: string
+    description: |
+      Whether AI rules are active for the policy, either `ENABLED`, `DISABLED`, or `NOT_ENROLLED`. 
+    enum:
+      - ENABLED
+      - DISABLED
+      - NOT_ENROLLED
+  aiRules:
+    type: array
+    description: |
+      The list of AI rules. Absent when `aiRuleStatus` is `NOT_ENROLLED`.
+    items:
+      $ref: ai-rule.yaml

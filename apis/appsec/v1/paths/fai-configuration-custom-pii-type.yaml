@@ -1,0 +1,66 @@
+put:
+  operationId: put-custom-pii-type
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/custom-pii-types/{customPiiId}
+  summary: Update a custom PII type
+  tags:
+  - Custom PII types
+  description: |
+    Update an existing custom PII type.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  - $ref: ../parameters/fai-custom-pii-id-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/put-custom-pii-type-request.json
+        schema:
+            $ref: ../schemas/custom-pii-type.yaml
+  responses:
+    200:
+      description: |
+        Custom PII entity updated successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/put-custom-pii-type-200.json
+          schema:
+            $ref: ../schemas/custom-pii-type.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml
+delete:
+  operationId: delete-custom-pii-type
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/custom-pii-types/{customPiiId}
+  summary: Delete a custom PII type
+  tags:
+  - Custom PII types
+  description: |
+    Delete a custom PII type from a configuration version. A custom PII type cannot be deleted if it is currently referenced by any rule in the configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  - $ref: ../parameters/fai-custom-pii-id-path.yaml
+  responses:
+    204:
+      description: |
+        Custom PII type deleted successfully. No response body.
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    409:
+      $ref: ../errors/409-export-task.yaml
+    500:
+      $ref: ../errors/500.yaml

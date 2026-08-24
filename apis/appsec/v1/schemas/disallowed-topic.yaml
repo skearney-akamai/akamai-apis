@@ -1,0 +1,24 @@
+type: object
+description: |
+  Represents a pre-defined disallowed topic that can be used in off-topic content detection rules. Disallowed topics are specific subject areas that organizations want to explicitly block from LLM conversations, even if they might fall within broader allowed topic categories. These can be used in the `overrideTopics` array of an off-topic rule to provide granular control over what subjects are permitted in AI interactions. Common examples include sensitive areas like politics, religion, controversial topics, or any domain-specific subjects an organization wishes to restrict.
+additionalProperties: false
+required:
+- topicId
+- topicName
+- isDisallowed
+properties:
+  topicId:
+    type: string
+    description: |
+      Unique identifier for the disallowed topic. This identifier references the topic in off-topic detection rules, specifically in the `overrideTopics` array of an off-topic rule. Examples might include `POLITICS`, `RELIGION`, `CONTROVERSIAL_TOPICS`, or other platform-defined topic categories that organizations can choose to block.
+    readOnly: true
+  topicName:
+    type: string
+    description: |
+      The human-readable name for this disallowed topic. This descriptive name helps administrators understand what subject area this topic represents. It appears in configuration management interfaces and documentation for clarity when setting up off-topic content rules.
+    readOnly: true
+  isDisallowed:
+    type: boolean
+    description: |
+      Indicates whether this topic is marked as disallowed by default. When `true`, this topic represents a subject area that is commonly restricted in LLM interactions. This flag helps administrators identify topics that are pre-categorized as sensitive or inappropriate for general AI assistant use cases.
+    readOnly: true

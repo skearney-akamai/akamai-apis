@@ -1,0 +1,24 @@
+type: object
+description: |
+  A classification category that a rule type belongs to, drawn from a security or compliance framework such as the OWASP Top 10 for LLM Applications.
+additionalProperties: false
+properties:
+  ruleCategoryType:
+    type: string
+    description: |
+      The classification framework. One of `OWASP_TOP_10_LLM` or `AKAMAI`.
+    enum:
+    - OWASP_TOP_10_LLM
+    - AKAMAI
+    x-enum-descriptions:
+      OWASP_TOP_10_LLM: The OWASP Top 10 for LLM Applications framework.
+      AKAMAI: An Akamai-defined classification.
+  ruleCategoryName:
+    type: string
+    description: |
+      Human-readable category name, such as `Prompt Injection`.
+  ruleCategoryId:
+    type: string
+    description: |
+      Identifier within the framework, such as `LLM01:2025`. Unique across all frameworks.
+

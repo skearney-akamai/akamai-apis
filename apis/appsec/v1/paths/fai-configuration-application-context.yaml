@@ -1,0 +1,133 @@
+get:
+  operationId: get-application-context
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/application-context
+  summary: Get the application context
+  tags:
+  - Application context
+  description: |
+    Get the application context for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  responses:
+    200:
+      description: |
+        Successful return of application context.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/get-application-context-200.json
+          schema:
+            $ref: ../schemas/application-context.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml
+post:
+  operationId: post-application-context
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/application-context
+  summary: Create the application context
+  tags:
+  - Application context
+  description: |
+    Create application context for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/post-application-context-request.json
+        schema:
+          $ref: ../schemas/application-context.yaml
+  responses:
+    201:
+      description: |
+        Application context created successfully.
+      headers:
+        Location:
+          $ref: ../headers/location-application-context.yaml
+      content:
+        application/json:
+          example:
+            $ref: ../examples/post-application-context-201.json
+          schema:
+            $ref: ../schemas/application-context.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml
+put:
+  operationId: put-application-context
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/application-context
+  summary: Update the application context
+  tags:
+  - Application context
+  description: |
+    Update the application context for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        example:
+          $ref: ../examples/put-application-context-request.json
+        schema:
+          $ref: ../schemas/application-context.yaml
+  responses:
+    200:
+      description: |
+        Application context updated successfully.
+      content:
+        application/json:
+          example:
+            $ref: ../examples/put-application-context-200.json
+          schema:
+            $ref: ../schemas/application-context.yaml
+    400:
+      $ref: ../errors/400.yaml
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    422:
+      $ref: ../errors/422-onboarding-activation.yaml
+    500:
+      $ref: ../errors/500.yaml
+delete:
+  operationId: delete-application-context
+  x-akamai:
+    path-info: /fai-configurations/{faiConfigId}/versions/{version}/application-context
+  summary: Delete the application context
+  tags:
+  - Application context
+  description: |
+    Delete the application context for a configuration version.
+  parameters:
+  - $ref: ../parameters/fai-config-id-path.yaml
+  - $ref: ../parameters/fai-version-path.yaml
+  responses:
+    204:
+      description: |
+        Application context deleted successfully. No response body.
+    403:
+      $ref: ../errors/403.yaml
+    404:
+      $ref: ../errors/404.yaml
+    500:
+      $ref: ../errors/500.yaml

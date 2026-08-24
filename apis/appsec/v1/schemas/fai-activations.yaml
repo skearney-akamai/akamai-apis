@@ -1,0 +1,55 @@
+type: object
+description: |
+  A paginated collection of activations.
+additionalProperties: false
+properties:
+  activations:
+    type: array
+    description: |
+      Array of activation objects.
+    items:
+      $ref: ./fai-activation.yaml
+  metadata:
+    type: object
+    description: |
+      Pagination metadata.
+    additionalProperties: false
+    properties:
+      faiConfigId:
+        type: string
+        description: Configuration ID to filter activations.
+      start:
+        type: string
+        format: date-time
+        description: Start of a time range.
+      end:
+        type: string
+        format: date-time
+        description: End of a time range.
+      page:
+        type: integer
+        minimum: 1
+        description: The current page number.
+      pageSize:
+        type: integer
+        minimum: 1
+        description: Number of items per page.
+      totalCount:
+        type: integer
+        description: Total number of activations matching the query.
+  links:
+    type: array
+    description: |
+      Navigable hypermedia links related to this collection.
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        rel:
+          type: string
+          description: |
+            The relationship of the linked resource to the current collection, such as `self`.
+        href:
+          type: string
+          description: |
+            The relative URL of the linked resource.

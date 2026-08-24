@@ -1,0 +1,20 @@
+description: |
+  Identify a client based on a specific request attribute. The `identifier` field determines which type applies.
+discriminator:
+  propertyName: identifier
+  mapping:
+    ip: ./quota-policy-client-identifier-ip.yaml
+    api-key: ./quota-policy-client-identifier-simple.yaml
+    ip-useragent: ./quota-policy-client-identifier-simple.yaml
+    tls-fingerprint: ./quota-policy-client-identifier-simple.yaml
+    cookie: ./quota-policy-client-identifier-named.yaml
+    query-string: ./quota-policy-client-identifier-named.yaml
+    request-header: ./quota-policy-client-identifier-named.yaml
+    request-body: ./quota-policy-client-identifier-body.yaml
+    jwt: ./quota-policy-client-identifier-jwt.yaml
+oneOf:
+- $ref: quota-policy-client-identifier-ip.yaml
+- $ref: quota-policy-client-identifier-simple.yaml
+- $ref: quota-policy-client-identifier-named.yaml
+- $ref: quota-policy-client-identifier-body.yaml
+- $ref: quota-policy-client-identifier-jwt.yaml

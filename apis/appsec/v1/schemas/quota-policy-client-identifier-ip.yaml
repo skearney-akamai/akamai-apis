@@ -1,0 +1,16 @@
+title: IP address
+type: object
+description: |
+  Identify a client by IP address.
+additionalProperties: false
+required:
+- identifier
+properties:
+  identifier:
+    type: string
+    description: |
+      The value for this client identifier type is `ip`.
+  order:
+    type: integer
+    description: |
+      Specify the position of this identifier in the fallback chain. The system attempts lower values first.

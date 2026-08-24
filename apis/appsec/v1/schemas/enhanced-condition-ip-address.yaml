@@ -1,0 +1,39 @@
+type: object
+description: |
+  Collect data needed for condition matches on IP addresses or CIDR blocks.
+title: IpAddressCondition
+additionalProperties: false
+required:
+- className
+- value
+properties:
+  className:
+    type: string
+    description: |
+      The value for this type of condition is `IpAddressCondition`.
+    enum:
+    - IpAddressCondition
+  positiveMatch:
+    type: boolean
+    description: |
+      Specify whether the condition triggers on a match or lack of match.
+  index:
+    type: integer
+    description: |
+      Specify the position of this condition within the condition set.
+  value:
+    type: array
+    description: |
+      Specify IP addresses or CIDR blocks to match against.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      minLength: 1
+  checkIps:
+    type: string
+    description: |
+      Specify which IP address to evaluate for matching. Either `connecting` to check only the directly connecting IP, or `both` to check both the connecting IP and any IPs in the `X-Forwarded-For` header.
+    enum:
+    - connecting
+    - both

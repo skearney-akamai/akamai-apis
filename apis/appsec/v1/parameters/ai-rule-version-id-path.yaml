@@ -1,0 +1,8 @@
+name: ruleVersionId
+in: path
+description: |
+  Uniquely identifies each version of an AI rule.
+required: true
+schema:
+  type: integer
+  example: 1

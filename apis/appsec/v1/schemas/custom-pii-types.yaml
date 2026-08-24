@@ -1,0 +1,11 @@
+type: object
+description: |
+  A collection of custom PII types.
+additionalProperties: false
+properties:
+  customPiiType:
+    type: array
+    description: |
+      Array of custom PII type objects.
+    items:
+      $ref: ./custom-pii-type.yaml
